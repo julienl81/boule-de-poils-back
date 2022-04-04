@@ -1,0 +1,231 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\AnimalRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass=AnimalRepository::class)
+ */
+class Animal
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $picture;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $age;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $child_compatibility;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $other_animal_compatibility;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $garden_needed;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $status;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="animals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $department;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Species::class, inversedBy="animals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $species;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Association::class, inversedBy="animals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $association;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    public function getChildCompatibility(): ?string
+    {
+        return $this->child_compatibility;
+    }
+
+    public function setChildCompatibility(string $child_compatibility): self
+    {
+        $this->child_compatibility = $child_compatibility;
+
+        return $this;
+    }
+
+    public function getOtherAnimalCompatibility(): ?string
+    {
+        return $this->other_animal_compatibility;
+    }
+
+    public function setOtherAnimalCompatibility(string $other_animal_compatibility): self
+    {
+        $this->other_animal_compatibility = $other_animal_compatibility;
+
+        return $this;
+    }
+
+    public function getGardenNeeded(): ?string
+    {
+        return $this->garden_needed;
+    }
+
+    public function setGardenNeeded(string $garden_needed): self
+    {
+        $this->garden_needed = $garden_needed;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDepartment(): ?Department
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?Department $department): self
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    public function getSpecies(): ?Species
+    {
+        return $this->species;
+    }
+
+    public function setSpecies(?Species $species): self
+    {
+        $this->species = $species;
+
+        return $this;
+    }
+
+    public function getAssociation(): ?Association
+    {
+        return $this->association;
+    }
+
+    public function setAssociation(?Association $association): self
+    {
+        $this->association = $association;
+
+        return $this;
+    }
+}
