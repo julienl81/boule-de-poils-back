@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Back;
 
 use App\Entity\Animal;
 use App\Form\AnimalType;
@@ -20,7 +20,7 @@ class AnimalController extends AbstractController
      */
     public function index(AnimalRepository $animalRepository): Response
     {
-        return $this->render('animal/index.html.twig', [
+        return $this->render('back/animal/index.html.twig', [
             'animals' => $animalRepository->findAll(),
         ]);
     }
@@ -39,7 +39,7 @@ class AnimalController extends AbstractController
             return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('animal/new.html.twig', [
+        return $this->renderForm('back/animal/new.html.twig', [
             'animal' => $animal,
             'form' => $form,
         ]);
@@ -50,7 +50,7 @@ class AnimalController extends AbstractController
      */
     public function show(Animal $animal): Response
     {
-        return $this->render('animal/show.html.twig', [
+        return $this->render('back/animal/show.html.twig', [
             'animal' => $animal,
         ]);
     }
@@ -68,7 +68,7 @@ class AnimalController extends AbstractController
             return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('animal/edit.html.twig', [
+        return $this->renderForm('back/animal/edit.html.twig', [
             'animal' => $animal,
             'form' => $form,
         ]);
