@@ -26,6 +26,7 @@ class User
      * @ORM\Column(type="string", length=255)
      */
     private $email;
+    //TODO - Rendre ce champs unique
 
     /**
      * @ORM\Column(type="string", length=255)
