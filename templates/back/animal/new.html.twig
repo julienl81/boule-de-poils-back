@@ -3,9 +3,11 @@
 {% block title %}New Animal{% endblock %}
 
 {% block body %}
-    <h1>Create new Animal</h1>
+<div class="container">
+    <h1>Ajout d'un animal</h1>
 
     {{ include('back/animal/_form.html.twig') }}
 
-    <a href="{{ path('app_animal_index') }}">back to list</a>
+    <a href="{{ path('app_animal_index') }}">Retour à la liste des animaux</a>
+</div>
 {% endblock %}

@@ -3,6 +3,7 @@
 {% block title %}Association{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Association</h1>
 
     <table class="table">
@@ -50,9 +51,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_association_index') }}">back to list</a>
+    <a href="{{ path('app_association_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_association_edit', {'id': association.id}) }}">edit</a>
+    <a href="{{ path('app_association_edit', {'id': association.id}) }}">Mettre à jour</a>
 
     {{ include('back/association/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

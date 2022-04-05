@@ -3,7 +3,8 @@
 {% block title %}Animal{% endblock %}
 
 {% block body %}
-    <h1>Animal</h1>
+<div class="container">
+    <h1>Fiche de l'animal</h1>
 
     <table class="table">
         <tbody>
@@ -12,31 +13,35 @@
                 <td>{{ animal.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <td>{{ animal.name }}</td>
             </tr>
             <tr>
-                <th>Gender</th>
+                <th>Espèce animale</th>
+                <td>{{ animal.species.name }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
                 <td>{{ animal.gender }}</td>
             </tr>
             <tr>
-                <th>Picture</th>
-                <td><img class="img_backoffice" src="{{ animal.picture }}"></td>
+                <th>Photo</th>
+                <td><img class="img_backoffice_show" src="{{ animal.picture }}"></td>
             </tr>
             <tr>
                 <th>Age</th>
                 <td>{{ animal.age }}</td>
             </tr>
             <tr>
-                <th>Child_compatibility</th>
+                <th>Sociable avec les enfants ?</th>
                 <td>{{ animal.childCompatibility }}</td>
             </tr>
             <tr>
-                <th>Other_animal_compatibility</th>
+                <th>Sociable avec autres animaux ?</th>
                 <td>{{ animal.otherAnimalCompatibility }}</td>
             </tr>
             <tr>
-                <th>Garden_needed</th>
+                <th>Besoin d'un jardin ?</th>
                 <td>{{ animal.gardenNeeded }}</td>
             </tr>
             <tr>
@@ -47,12 +52,21 @@
                 <th>Description</th>
                 <td>{{ animal.description }}</td>
             </tr>
+                        <tr>
+                <th>Association</th>
+                <td>{{ animal.association.name }}</td>
+            </tr>
+                        <tr>
+                <th>Département d'accueil</th>
+                <td>{{ animal.department.name }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_animal_index') }}">back to list</a>
+    <a href="{{ path('app_animal_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
 
     {{ include('back/animal/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

@@ -1,24 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Association index{% endblock %}
+{% block title %}Liste des Associations{% endblock %}
 
 {% block body %}
-    <h1>Association index</h1>
+<div class="container">
+    <h1>Liste des Associations</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Description</th>
                 <th>Siren</th>
-                <th>Street</th>
-                <th>Zip_code</th>
-                <th>City</th>
-                <th>Phone_number</th>
+                <th>Rue</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Numéro de téléphone</th>
                 <th>Email</th>
-                <th>Active</th>
-                <th>actions</th>
+                <th>Statut</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,17 +36,18 @@
                 <td>{{ association.email }}</td>
                 <td>{{ association.active ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_association_show', {'id': association.id}) }}">show</a>
-                    <a href="{{ path('app_association_edit', {'id': association.id}) }}">edit</a>
+                    <a href="{{ path('app_association_show', {'id': association.id}) }}">Voir plus</a>
+                    <a href="{{ path('app_association_edit', {'id': association.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_association_new') }}">Create new</a>
+    <a href="{{ path('app_association_new') }}">Ajouter</a>
+    </div>
 {% endblock %}

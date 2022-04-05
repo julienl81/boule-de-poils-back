@@ -3,18 +3,19 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+<div class="container">
+    <h1>Liste des utilisateurs</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Username</th>
+                <th>Nom d'utilisateur</th>
                 <th>Email</th>
-                <th>Password</th>
-                <th>Active</th>
-                <th>Role</th>
-                <th>actions</th>
+                <th>Mot de passe</th>
+                <th>Status</th>
+                <th>Rôle</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,17 +28,18 @@
                 <td>{{ user.active ? 'Yes' : 'No' }}</td>
                 <td>{{ user.role }}</td>
                 <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir plus</a>
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_user_new') }}">Create new</a>
+    <a href="{{ path('app_back_user_new') }}">Ajouter</a>
+    </div>
 {% endblock %}

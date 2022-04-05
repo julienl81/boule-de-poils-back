@@ -3,22 +3,24 @@
 {% block title %}Animal index{% endblock %}
 
 {% block body %}
-    <h1>Animal index</h1>
+
+<div class="container">
+    <h1>Liste des animaux</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Picture</th>
+                <th>Nom</th>
+                <th>Genre</th>
+                <th>Photo</th>
                 <th>Age</th>
-                <th>Child_compatibility</th>
-                <th>Other_animal_compatibility</th>
-                <th>Garden_needed</th>
+                <th>Sociable avec les enfants ?</th>
+                <th>Sociable avec autres animaux ?</th>
+                <th>Besoin d'un jardin ?</th>
                 <th>Status</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +29,7 @@
                 <td>{{ animal.id }}</td>
                 <td>{{ animal.name }}</td>
                 <td>{{ animal.gender }}</td>
-                <td>{{ animal.picture }}</td>
+                <td><img class="img_backoffice_index" src="{{ animal.picture }}"></td>
                 <td>{{ animal.age }}</td>
                 <td>{{ animal.childCompatibility }}</td>
                 <td>{{ animal.otherAnimalCompatibility }}</td>
@@ -35,17 +37,18 @@
                 <td>{{ animal.status }}</td>
                 <td>{{ animal.description }}</td>
                 <td>
-                    <a href="{{ path('app_animal_show', {'id': animal.id}) }}">show</a>
-                    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">edit</a>
+                    <a href="{{ path('app_animal_show', {'id': animal.id}) }}">Voir plus</a>
+                    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_animal_new') }}">Create new</a>
+    <a href="{{ path('app_animal_new') }}">Ajouter</a>
+    </div>
 {% endblock %}
