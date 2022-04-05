@@ -37,7 +37,7 @@ class Association
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $address;
+    private $street;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -115,14 +115,14 @@ class Association
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getStreet(): ?string
     {
-        return $this->address;
+        return $this->street;
     }
 
-    public function setAddress(string $address): self
+    public function setStreet(string $street): self
     {
-        $this->address = $address;
+        $this->street = $street;
 
         return $this;
     }

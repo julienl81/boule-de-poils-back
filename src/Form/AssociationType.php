@@ -22,7 +22,7 @@ class AssociationType extends AbstractType
             ->add('siren', null, [
                 'label' => 'Numéro de SIREN',
             ])
-            ->add('address', null, [
+            ->add('street', null, [
                 'label' => 'Numéro et voie',
             ])
             ->add('zip_code', null, [

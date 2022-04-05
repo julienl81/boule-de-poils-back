@@ -2,15 +2,20 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Association;
 use App\Entity\Department;
 use App\Entity\Species;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create();
+        $faker->seed(806);
+        
         // $product = new Product();
         // $manager->persist($product);
 
@@ -157,6 +162,29 @@ class AppFixtures extends Fixture
             // On l'enregistre dans le manager
            $manager->persist($department);
         }
+
+
+        // On veut créer une liste des associations
+        $nbAssociation = 10;
+
+       // va contenir les objets associations que l'on a créé
+       $associationObjects = [];
+
+       for ($associationCount = 0; $associationCount < $nbAssociation; $associationCount++) {
+           $association = new Association();
+           $association->setName($faker->company());
+           $association->setDescription($faker->text(100));
+           $association->setSiren(123456789);
+           $association->setStreet($faker->streetAddress());
+           $association->setZipCode($faker->postcode());
+           $association->setCity($faker->city());
+           $association->setPhoneNumber($faker->phoneNumber());
+           $association->setEmail($faker->email());
+           $association->setActive($faker->boolean());
+           
+           $manager->persist($association);
+       }
+        
 
 
 
