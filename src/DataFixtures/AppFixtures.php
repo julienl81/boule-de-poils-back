@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Department;
 use App\Entity\Species;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -37,14 +38,126 @@ class AppFixtures extends Fixture
            $manager->persist($species);
         }
 
+        // On veut créer une liste des départements et les stocker dans un tableau
+        $department = [
+            '01 - Ain',
+            '02 - Aisne',
+            '03 - Allier',
+            '04 - Alpes-de-Haute-Provence',
+            '05 - Hautes-alpes',
+            '06 - Alpes-maritimes',
+            '07 - Ardèche',
+            '08 - Ardennes',
+            '09 - Ariège',
+            '10 - Aube',
+            '11 - Aude',
+            '12 - Aveyron',
+            '13 - Bouches-du-Rhône',
+            '14 - Calvados',
+            '15 - Cantal',
+            '16 - Charente',
+            '17 - Charente-maritime',
+            '18 - Cher',
+            '19 - Corrèze',
+            '2A - Corse-du-sud',
+            '2B - Haute-Corse',
+            '21 - Côte-d\'Or',
+            '22 - Côtes-d\'Armor',
+            '23 - Creuse',
+            '24 - Dordogne',
+            '25 - Doubs',
+            '26 - Drôme',
+            '27 - Eure',
+            '28 - Eure-et-loir',
+            '29 - Finistère',
+            '30 - Gard',
+            '31 - Haute-garonne',
+            '32 - Gers',
+            '33 - Gironde',
+            '34 - Hérault',
+            '35 - Ille-et-vilaine',
+            '36 - Indre',
+            '37 - Indre-et-loire',
+            '38 - Isère',
+            '39 - Jura',
+            '40 - Landes',
+            '41 - Loir-et-cher',
+            '42 - Loire',
+            '43 - Haute-loire',
+            '44 - Loire-atlantique',
+            '45 - Loiret',
+            '46 - Lot',
+            '47 - Lot-et-garonne',
+            '48 - Lozère',
+            '49 - Maine-et-loire',
+            '50 - Manche',
+            '51 - Marne',
+            '52 - Haute-marne',
+            '53 - Mayenne',
+            '54 - Meurthe-et-moselle',
+            '55 - Meuse',
+            '56 - Morbihan',
+            '57 - Moselle',
+            '58 - Nièvre',
+            '59 - Nord',
+            '60 - Oise',
+            '61 - Orne',
+            '62 - Pas-de-calais',
+            '63 - Puy-de-dôme',
+            '64 - Pyrénées-atlantiques',
+            '65 - Hautes-Pyrénées',
+            '66 - Pyrénées-orientales',
+            '67 - Bas-rhin',
+            '68 - Haut-rhin',
+            '69 - Rhône',
+            '70 - Haute-saône',
+            '71 - Saône-et-loire',
+            '72 - Sarthe',
+            '73 - Savoie',
+            '74 - Haute-savoie',
+            '75 - Paris',
+            '76 - Seine-maritime',
+            '77 - Seine-et-marne',
+            '78 - Yvelines',
+            '79 - Deux-sèvres',
+            '80 - Somme',
+            '81 - Tarn',
+            '82 - Tarn-et-Garonne',
+            '83 - Var',
+            '84 - Vaucluse',
+            '85 - Vendée',
+            '86 - Vienne',
+            '87 - Haute-vienne',
+            '88 - Vosges',
+            '89 - Yonne',
+            '90 - Territoire de belfort',
+            '91 - Essonne',
+            '92 - Hauts-de-seine',
+            '93 - Seine-Saint-Denis',
+            '94 - Val-de-marne',
+            '95 - Val-d\'Oise',
+            '971 - Guadeloupe',
+            '972 - Martinique',
+            '973 - Guyane',
+            '974 - La réunion',
+            '976 - Mayotte'
+        ];
 
+       // va contenir les objets espèces que l'on a créé
+       $departmentObjects = [];
 
-        
+       foreach ($department as $currentDepartment) {
+           // On crée unnouveau département
+           $department = new Department();
+           // On lui donne un nom
+           $department->setName($currentDepartment);
+           $department->setNumber(0);
+           // On stocke le département dans le tableau
+           $departmentObjects[] = $department;
+            // On l'enregistre dans le manager
+           $manager->persist($department);
+        }
 
-
-
-
-        
 
 
         
@@ -54,104 +167,3 @@ class AppFixtures extends Fixture
 
 
 
-// 01 - Ain - Bourg-en-bresse
-// 02 - Aisne - Laon
-// 03 - Allier - Moulins
-// 04 - Alpes-de-Haute-Provence - Digne-les-bains
-// 05 - Hautes-alpes - Gap
-// 06 - Alpes-maritimes - Nice
-// 07 - Ardèche - Privas
-// 08 - Ardennes - Charleville-mézières
-// 09 - Ariège - Foix
-// 10 - Aube - Troyes
-// 11 - Aude - Carcassonne
-// 12 - Aveyron - Rodez
-// 13 - Bouches-du-Rhône - Marseille
-// 14 - Calvados - Caen
-// 15 - Cantal - Aurillac
-// 16 - Charente - Angoulême
-// 17 - Charente-maritime - La rochelle
-// 18 - Cher - Bourges
-// 19 - Corrèze - Tulle
-// 2A - Corse-du-sud - Ajaccio
-// 2B - Haute-Corse - Bastia
-// 21 - Côte-d'Or - Dijon
-// 22 - Côtes-d'Armor - Saint-brieuc
-// 23 - Creuse - Guéret
-// 24 - Dordogne - Périgueux
-// 25 - Doubs - Besançon
-// 26 - Drôme - Valence
-// 27 - Eure - Évreux
-// 28 - Eure-et-loir - Chartres
-// 29 - Finistère - Quimper
-// 30 - Gard - Nîmes
-// 31 - Haute-garonne - Toulouse
-// 32 - Gers - Auch
-// 33 - Gironde - Bordeaux
-// 34 - Hérault - Montpellier
-// 35 - Ille-et-vilaine - Rennes
-// 36 - Indre - Châteauroux
-// 37 - Indre-et-loire - Tours
-// 38 - Isère - Grenoble
-// 39 - Jura - Lons-le-saunier
-// 40 - Landes - Mont-de-marsan
-// 41 - Loir-et-cher - Blois
-// 42 - Loire - Saint-étienne
-// 43 - Haute-loire - Le puy-en-velay
-// 44 - Loire-atlantique - Nantes
-// 45 - Loiret - Orléans
-// 46 - Lot - Cahors
-// 47 - Lot-et-garonne - Agen
-// 48 - Lozère - Mende
-// 49 - Maine-et-loire - Angers
-// 50 - Manche - Saint-lô
-// 51 - Marne - Châlons-en-champagne
-// 52 - Haute-marne - Chaumont
-// 53 - Mayenne - Laval
-// 54 - Meurthe-et-moselle - Nancy
-// 55 - Meuse - Bar-le-duc
-// 56 - Morbihan - Vannes
-// 57 - Moselle - Metz
-// 58 - Nièvre - Nevers
-// 59 - Nord - Lille
-// 60 - Oise - Beauvais
-// 61 - Orne - Alençon
-// 62 - Pas-de-calais - Arras
-// 63 - Puy-de-dôme - Clermont-ferrand
-// 64 - Pyrénées-atlantiques - Pau
-// 65 - Hautes-Pyrénées - Tarbes
-// 66 - Pyrénées-orientales - Perpignan
-// 67 - Bas-rhin - Strasbourg
-// 68 - Haut-rhin - Colmar
-// 69 - Rhône - Lyon
-// 70 - Haute-saône - Vesoul
-// 71 - Saône-et-loire - Mâcon
-// 72 - Sarthe - Le mans
-// 73 - Savoie - Chambéry
-// 74 - Haute-savoie - Annecy
-// 75 - Paris - Paris
-// 76 - Seine-maritime - Rouen
-// 77 - Seine-et-marne - Melun
-// 78 - Yvelines - Versailles
-// 79 - Deux-sèvres - Niort
-// 80 - Somme - Amiens
-// 81 - Tarn - Albi
-// 82 - Tarn-et-Garonne - Montauban
-// 83 - Var - Toulon
-// 84 - Vaucluse - Avignon
-// 85 - Vendée - La roche-sur-yon
-// 86 - Vienne - Poitiers
-// 87 - Haute-vienne - Limoges
-// 88 - Vosges - Épinal
-// 89 - Yonne - Auxerre
-// 90 - Territoire de belfort
-// 91 - Essonne
-// 92 - Hauts-de-seine
-// 93 - Seine-Saint-Denis
-// 94 - Val-de-marne
-// 95 - Val-d'Oise
-// 971 - Guadeloupe
-// 972 - Martinique
-// 973 - Guyane
-// 974 - La réunion
-// 976 - Mayotte
