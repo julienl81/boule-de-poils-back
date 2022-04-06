@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AssociationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,21 +22,25 @@ class Association
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * 
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("api_animals_list")
      */
     private $siren;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $street;
 

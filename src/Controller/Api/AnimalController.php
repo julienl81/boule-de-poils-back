@@ -30,42 +30,43 @@ class AnimalController extends AbstractController
         $jsonContent = $request->getContent();        
         //dd($request);
         $parsed_json = json_decode($jsonContent);
-
+        
         dump($parsed_json);
         $genre = $parsed_json->gender;
         $child_compatibilty = $parsed_json->child_compatibility;    
-    
-
+        
+        //* On veut récupérer un Json depuis le Front avec les critères de recherche    
+        //* On veut mettre en variable les critéres de recherches
+        //* On veut faire une requête sql qui réponds aux critères de recherche
+        
         dump($child_compatibilty);
         dump($genre);
         // dd($child_compatibilty);
 
         $data = [
-            'genre' => $genre,
-            'atibility' => $child_compatibilty
+            'gender' => $genre,
+            'childCompatibility' => $child_compatibilty
         ];
 
         return $this->json($data, Response::HTTP_OK);
-        
+                
+    }
 
+    /**
+     * @Route("/api/animal", name="app_api_animal_list", methods={"GET"})
+     */
+    public function animalList(AnimalRepository $animalRepository): Response
+    {
+        $animals = $animalRepository->findAll();
+        //dump($animals);
 
-        $aninalRepository = $doctrine->getRepository(Animal::class);
-        $animals = $aninalRepository->findAll();
-        $encoders = [new JsonEncoder()];
-        $normalizers = [new AnimalNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
-        $jsonContent = $serializer->serialize($animals, 'json');
-        return new Response($jsonContent, Response::HTTP_OK, ['Content-Type' => 'application/json']);
-
-            
+        return $this->json($animals, Response::HTTP_OK,[],['groups' => 'api_animals_list']);
     }
 }
 
 
 
-//* On veut récupérer un Json depuis le Front avec les critères de recherche    
-//* On veut mettre en variable les critéres de recherches
-//* On veut faire une requête sql qui réponds aux critères de recherche
+
 
 // public function findOneWithAllData($movieId): ?Movie
 //     {
@@ -86,29 +87,3 @@ class AnimalController extends AbstractController
 //         return $query->getOneOrNullResult();
 //     }
 
-class AnimaleController extends AbstractController
-{
-
-    /**
-     * Get animal collection
-     * 
-     * @Route("/api/animal", name="api_animal_get", methods={"GET"})
-     */
-    public function getCollection(AnimalRepository $animalRepository): Response
-    {
-        
-        // On va chercher les données
-        $animalList = $animalRepository->findAll();
-
-        return $this->json(
-            // Les données à sérialiser (à convertir en JSON)
-            $animalList,
-            // Le status code
-            200,
-            // Les en-têtes de réponse à ajouter (aucune)
-            [],
-            // Les groupes à utiliser par le Serializer
-            ['groups' => 'get_animal_collection']
-        );
-    }
-}
