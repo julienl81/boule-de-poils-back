@@ -38,6 +38,7 @@ class Animal
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("api_animals_list")
      */
     private $age;
 
