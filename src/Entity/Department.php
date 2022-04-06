@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DepartmentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +27,7 @@ class Department
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $name;
 

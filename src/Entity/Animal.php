@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,16 +20,19 @@ class Animal
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $gender;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $picture;
 
@@ -39,44 +43,52 @@ class Animal
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $child_compatibility;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $other_animal_compatibility;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_animals_list")
      */
     private $garden_needed;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Groups("api_animals_list")
      */
     private $status;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("api_animals_list")
      */
     private $description;
 
     /**
      * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="animals")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_animals_list")
      */
     private $department;
 
     /**
      * @ORM\ManyToOne(targetEntity=Species::class, inversedBy="animals")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_animals_list")
      */
     private $species;
 
     /**
      * @ORM\ManyToOne(targetEntity=Association::class, inversedBy="animals")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_animals_list")
      */
     private $association;
 
