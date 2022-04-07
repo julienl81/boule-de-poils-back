@@ -36,4 +36,8 @@ On va ajouter des données fictives pour pouvoir travailler, ce sont les fixture
 bin/console doctrine:fixtures:load
 ```
 
+## Serveur web ##
+
+```php -S localhost:8080 -t public```
+
 C'est maintenant prêt, good luck :)

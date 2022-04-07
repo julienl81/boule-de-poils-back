@@ -74,12 +74,13 @@ class AnimalController extends AbstractController
         
         $child_compatibility = $parsed_json->childCompatibility;    
         $other_animal_compatibility = $parsed_json->other_animal_compatibility;    
-        $garden_needed = $parsed_json->garden_needed;  
-        // Todo - Pour les valeurs "indifférent" des questions voie en SQL avec isnull (piste de reflextion)
-        //$department = $parsed_json->department; 
+        $garden_needed = $parsed_json->garden_needed;
+        $status = $parsed_json->status;
+
+        $department = $parsed_json->department; 
         
         // Envoyer les variables dans une méthode qui executera la requete SQL et les stocker dans une variable
-        $results = $animalRepository->findAnimalsFromSearchForm($genderMin, $genderMax,$species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed);
+        $results = $animalRepository->findAnimalsFromSearchForm($genderMin, $genderMax,$species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department);
        
         // Envoyer la variable contenant les résultats en json pour le Front
         return $this->json($results, Response::HTTP_OK,[], ['groups' => 'api_animals_list']);

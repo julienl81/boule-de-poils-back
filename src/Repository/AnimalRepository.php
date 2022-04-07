@@ -47,7 +47,7 @@ class AnimalRepository extends ServiceEntityRepository
     /**
      * @return Animal[] Returns an array of Animal objects
      */
-    public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed)
+    public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department)
     {
         $entityManager = $this->getEntityManager();
 
@@ -60,7 +60,9 @@ class AnimalRepository extends ServiceEntityRepository
                 a.child_compatibility = :child_compatibility AND 
                 a.other_animal_compatibility = :other_animal_compatibility AND 
                 a.garden_needed = :garden_needed AND 
-                a.age BETWEEN :age_min AND :age_max
+                a.age BETWEEN :age_min AND :age_max AND
+                a.department = :department AND
+                a.status BETWEEN 0 AND :status  
             ORDER BY a.name ASC'
         )
         // Todo - Voir pour filtrer age_min et age_max avec < & >
@@ -73,11 +75,13 @@ class AnimalRepository extends ServiceEntityRepository
             'child_compatibility' => $child_compatibility, 
             'other_animal_compatibility' => $other_animal_compatibility, 
             'garden_needed' => $garden_needed, 
-            //'department' => $department
+            'status' => $status,
+            'department' => $department
         ));
  
         return $query->getResult();
 
+        //
         
         // return $this->createQueryBuilder('a')
         //     ->andWhere('a.exampleField = :val')
