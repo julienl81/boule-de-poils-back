@@ -234,7 +234,7 @@ class AppFixtures extends Fixture
 
 
        // ! On veut créer une liste d'animaux
-       $nbAnimal = 200;
+       $nbAnimal = 500;
 
        for ($animalCount = 0; $animalCount < $nbAnimal; $animalCount++) {
            // ajout de l'animal
@@ -242,12 +242,12 @@ class AppFixtures extends Fixture
            
            $animal->setName($faker->firstName());
            $animal->setSpecies($faker->randomElement($speciesObjects));
-           $animal->setGender($faker->randomFloat(1, 0, 2));
+           $animal->setGender($faker->numberBetween(0, 1));
            $animal->setAge($faker->randomFloat(1, 1, 20));
            $animal->setPicture($faker->randomElement($imageAninmal));
-           $animal->setChildCompatibility($faker->randomFloat(1, 0, 1));
-           $animal->setOtherAnimalCompatibility($faker->randomFloat(1, 0, 1));
-           $animal->setGardenNeeded($faker->randomFloat(1, 0, 1));
+           $animal->setChildCompatibility($faker->numberBetween(0, 1));
+           $animal->setOtherAnimalCompatibility($faker->numberBetween(0, 1));
+           $animal->setGardenNeeded($faker->numberBetween(0, 1));
            $animal->setStatus($faker->randomFloat(1, 0, 4));
            $animal->setDescription($faker->realText(150));
            
