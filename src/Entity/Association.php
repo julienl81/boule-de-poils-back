@@ -33,7 +33,7 @@ class Association
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
      */
     private $siren;
