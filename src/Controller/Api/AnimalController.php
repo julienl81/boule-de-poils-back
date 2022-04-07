@@ -34,8 +34,20 @@ class AnimalController extends AbstractController
         // Mettre les critères du Json en variables php
         // Todo - Gérer la validations des données
         
-        $gender = $parsed_json->gender;
-
+        $gender = $parsed_json->gender;   
+        if ($gender === 0) {
+            $genderMin = 0;
+            $genderMax = 0;
+        }
+        if ($gender === 1) {
+            $genderMin = 1;
+            $genderMax = 1;
+        }
+        if ($gender === 2) {
+            $genderMin = 0;
+            $genderMax = 1;
+        }
+        
         $species = $parsed_json->species; 
 
         $age = $parsed_json->age;    
@@ -48,11 +60,11 @@ class AnimalController extends AbstractController
             $ageMax = 5;
         }
         if ($age === 2) {
-            $ageMin = 5.1;
+            $ageMin = 6;
             $ageMax = 10;
         }
         if ($age === 3) {
-            $ageMin = 10;
+            $ageMin = 11;
             $ageMax = 30;
         }  
         if ($age === 4) {
@@ -67,7 +79,7 @@ class AnimalController extends AbstractController
         //$department = $parsed_json->department; 
         
         // Envoyer les variables dans une méthode qui executera la requete SQL et les stocker dans une variable
-        $results = $animalRepository->findAnimalsFromSearchForm($gender, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed);
+        $results = $animalRepository->findAnimalsFromSearchForm($genderMin, $genderMax,$species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed);
        
         // Envoyer la variable contenant les résultats en json pour le Front
         return $this->json($results, Response::HTTP_OK,[], ['groups' => 'api_animals_list']);
