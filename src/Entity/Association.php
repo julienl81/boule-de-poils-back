@@ -108,12 +108,12 @@ class Association
         return $this;
     }
 
-    public function getSiren(): ?int
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
 
-    public function setSiren(int $siren): self
+    public function setSiren(string $siren): self
     {
         $this->siren = $siren;
 

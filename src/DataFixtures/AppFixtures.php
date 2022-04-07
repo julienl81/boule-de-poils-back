@@ -182,7 +182,7 @@ class AppFixtures extends Fixture
            $association->setCity($faker->city());
            $association->setPhoneNumber($faker->phoneNumber());
            $association->setEmail($faker->email());
-           $association->setActive($faker->boolean());
+           $association->setActive($faker->randomFloat(1, 0, 1));
            
            $manager->persist($association);
            $associationObjects[] = $association;
@@ -242,12 +242,12 @@ class AppFixtures extends Fixture
            
            $animal->setName($faker->firstName());
            $animal->setSpecies($faker->randomElement($speciesObjects));
-           $animal->setGender($faker->boolean());
-           $animal->setAge($faker->randomFloat(1, 1, 15));
+           $animal->setGender($faker->randomFloat(1, 0, 2));
+           $animal->setAge($faker->randomFloat(1, 1, 20));
            $animal->setPicture($faker->randomElement($imageAninmal));
-           $animal->setChildCompatibility($faker->boolean());
-           $animal->setOtherAnimalCompatibility($faker->boolean());
-           $animal->setGardenNeeded($faker->boolean());
+           $animal->setChildCompatibility($faker->randomFloat(1, 0, 1));
+           $animal->setOtherAnimalCompatibility($faker->randomFloat(1, 0, 1));
+           $animal->setGardenNeeded($faker->randomFloat(1, 0, 1));
            $animal->setStatus($faker->randomFloat(1, 0, 4));
            $animal->setDescription($faker->realText(150));
            
