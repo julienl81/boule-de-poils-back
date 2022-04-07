@@ -167,7 +167,7 @@ class AppFixtures extends Fixture
 
 
         // ! On veut créer une liste des associations
-        $nbAssociation = 10;
+        $nbAssociation = 20;
 
         // va contenir les objets associations que l'on a créé
         $associationObjects = [];
@@ -176,13 +176,13 @@ class AppFixtures extends Fixture
            $association = new Association();
            $association->setName($faker->company());
            $association->setDescription($faker->text(100));
-           $association->setSiren(123456789);
+           $association->setSiren($faker->siren());
            $association->setStreet($faker->streetAddress());
            $association->setZipCode($faker->postcode());
            $association->setCity($faker->city());
            $association->setPhoneNumber($faker->phoneNumber());
            $association->setEmail($faker->email());
-           $association->setActive($faker->boolean());
+           $association->setActive($faker->randomFloat(1, 0, 1));
            
            $manager->persist($association);
            $associationObjects[] = $association;
@@ -234,20 +234,20 @@ class AppFixtures extends Fixture
 
 
        // ! On veut créer une liste d'animaux
-       $nbAnimal = 20;
+       $nbAnimal = 500;
 
        for ($animalCount = 0; $animalCount < $nbAnimal; $animalCount++) {
            // ajout de l'animal
            $animal = new Animal();
            
-           $animal->setName($faker->name());
+           $animal->setName($faker->firstName());
            $animal->setSpecies($faker->randomElement($speciesObjects));
-           $animal->setGender($faker->randomElement(['Male', 'Femelle']));
-           $animal->setAge($faker->randomFloat(1, 1, 15));
+           $animal->setGender($faker->numberBetween(0, 1));
+           $animal->setAge($faker->randomFloat(1, 1, 20));
            $animal->setPicture($faker->randomElement($imageAninmal));
-           $animal->setChildCompatibility($faker->randomElement(['True', 'False']));
-           $animal->setOtherAnimalCompatibility($faker->randomElement(['True', 'False']));
-           $animal->setGardenNeeded($faker->randomElement(['True', 'False']));
+           $animal->setChildCompatibility($faker->numberBetween(0, 1));
+           $animal->setOtherAnimalCompatibility($faker->numberBetween(0, 1));
+           $animal->setGardenNeeded($faker->numberBetween(0, 1));
            $animal->setStatus($faker->randomFloat(1, 0, 4));
            $animal->setDescription($faker->realText(150));
            

@@ -22,34 +22,68 @@ class AnimalController extends AbstractController
     /**
      * @Route("/api/animal", name="app_api_animal", methods={"POST"})
      */
-    public function getResults(Request $request, SerializerInterface $serializer, AnimalRepository $aninalRepository, ValidatorInterface $validator, ManagerRegistry $doctrine): Response
+    public function getResults(Request $request, SerializerInterface $serializer, AnimalRepository $animalRepository, ValidatorInterface $validator, ManagerRegistry $doctrine): Response
     {
 
-        // ! Récupérer le contenu JSON
-        
+        // Récupérer le contenu JSON
         $jsonContent = $request->getContent();        
-        //dd($request);
+    
         $parsed_json = json_decode($jsonContent);
-        
         dump($parsed_json);
-        $genre = $parsed_json->gender;
-        $child_compatibilty = $parsed_json->child_compatibility;    
-        
-        //* On veut récupérer un Json depuis le Front avec les critères de recherche    
-        //* On veut mettre en variable les critéres de recherches
-        //* On veut faire une requête sql qui réponds aux critères de recherche
-        
-        dump($child_compatibilty);
-        dump($genre);
-        // dd($child_compatibilty);
 
-        $data = [
-            'gender' => $genre,
-            'childCompatibility' => $child_compatibilty
-        ];
+        // Mettre les critères du Json en variables php
+        // Todo - Gérer la validations des données
+        
+        $gender = $parsed_json->gender;   
+        if ($gender === 0) {
+            $genderMin = 0;
+            $genderMax = 0;
+        }
+        if ($gender === 1) {
+            $genderMin = 1;
+            $genderMax = 1;
+        }
+        if ($gender === 2) {
+            $genderMin = 0;
+            $genderMax = 1;
+        }
+        
+        $species = $parsed_json->species; 
 
-        return $this->json($data, Response::HTTP_OK);
-                
+        $age = $parsed_json->age;    
+        if ($age === 0) {
+            $ageMin = 0;
+            $ageMax = 1;
+        }
+        if ($age === 1) {
+            $ageMin = 1;
+            $ageMax = 5;
+        }
+        if ($age === 2) {
+            $ageMin = 6;
+            $ageMax = 10;
+        }
+        if ($age === 3) {
+            $ageMin = 11;
+            $ageMax = 30;
+        }  
+        if ($age === 4) {
+            $ageMin = 0;
+            $ageMax = 30;
+        }
+        
+        $child_compatibility = $parsed_json->childCompatibility;    
+        $other_animal_compatibility = $parsed_json->other_animal_compatibility;    
+        $garden_needed = $parsed_json->garden_needed;  
+        // Todo - Pour les valeurs "indifférent" des questions voie en SQL avec isnull (piste de reflextion)
+        //$department = $parsed_json->department; 
+        
+        // Envoyer les variables dans une méthode qui executera la requete SQL et les stocker dans une variable
+        $results = $animalRepository->findAnimalsFromSearchForm($genderMin, $genderMax,$species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed);
+       
+        // Envoyer la variable contenant les résultats en json pour le Front
+        return $this->json($results, Response::HTTP_OK,[], ['groups' => 'api_animals_list']);
+
     }
 
     /**

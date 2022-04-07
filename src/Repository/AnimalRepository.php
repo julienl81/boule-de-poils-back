@@ -44,6 +44,61 @@ class AnimalRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    /**
+     * @return Animal[] Returns an array of Animal objects
+     */
+    public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT a
+            FROM App\Entity\Animal a
+            WHERE 
+                a.species = :species AND 
+                a.gender BETWEEN :gender_min AND :gender_max AND 
+                a.child_compatibility = :child_compatibility AND 
+                a.other_animal_compatibility = :other_animal_compatibility AND 
+                a.garden_needed = :garden_needed AND 
+                a.age BETWEEN :age_min AND :age_max
+            ORDER BY a.name ASC'
+        )
+        // Todo - Voir pour filtrer age_min et age_max avec < & >
+        ->setParameters(array(
+            'species' => $species, 
+            'gender_min' => $genderMin, 
+            'gender_max' => $genderMax, 
+            'age_min' => $ageMin, 
+            'age_max' => $ageMax, 
+            'child_compatibility' => $child_compatibility, 
+            'other_animal_compatibility' => $other_animal_compatibility, 
+            'garden_needed' => $garden_needed, 
+            //'department' => $department
+        ));
+ 
+        return $query->getResult();
+
+        
+        // return $this->createQueryBuilder('a')
+        //     ->andWhere('a.exampleField = :val')
+        //     ->setParameter('val', $value)
+        //     ->orderBy('a.id', 'ASC')
+        //     ->setMaxResults(10)
+        //     ->getQuery()
+        //     ->getResult()
+        // ;
+    }
+
+    
+        // public function findAllAnimals()
+    // {
+    //     return $this->createQueryBuilder('a')
+    //         ->orderBy('a.id', 'ASC')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+
 
     // /**
     //  * @return Animal[] Returns an array of Animal objects
@@ -73,4 +128,5 @@ class AnimalRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }

@@ -33,7 +33,7 @@ class Association
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
      */
     private $siren;
@@ -108,12 +108,12 @@ class Association
         return $this;
     }
 
-    public function getSiren(): ?int
+    public function getSiren(): ?string
     {
         return $this->siren;
     }
 
-    public function setSiren(int $siren): self
+    public function setSiren(string $siren): self
     {
         $this->siren = $siren;
 

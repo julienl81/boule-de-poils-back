@@ -25,7 +25,7 @@ class Animal
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean", length=255)
      * @Groups("api_animals_list")
      */
     private $gender;
@@ -38,23 +38,24 @@ class Animal
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("api_animals_list")
      */
     private $age;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean", length=255)
      * @Groups("api_animals_list")
      */
     private $child_compatibility;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean", length=255)
      * @Groups("api_animals_list")
      */
     private $other_animal_compatibility;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean", length=255)
      * @Groups("api_animals_list")
      */
     private $garden_needed;
