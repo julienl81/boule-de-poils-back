@@ -167,7 +167,7 @@ class AppFixtures extends Fixture
 
 
         // ! On veut créer une liste des associations
-        $nbAssociation = 10;
+        $nbAssociation = 20;
 
         // va contenir les objets associations que l'on a créé
         $associationObjects = [];
@@ -176,7 +176,7 @@ class AppFixtures extends Fixture
            $association = new Association();
            $association->setName($faker->company());
            $association->setDescription($faker->text(100));
-           $association->setSiren(123456789);
+           $association->setSiren($faker->siren());
            $association->setStreet($faker->streetAddress());
            $association->setZipCode($faker->postcode());
            $association->setCity($faker->city());
@@ -234,20 +234,20 @@ class AppFixtures extends Fixture
 
 
        // ! On veut créer une liste d'animaux
-       $nbAnimal = 20;
+       $nbAnimal = 200;
 
        for ($animalCount = 0; $animalCount < $nbAnimal; $animalCount++) {
            // ajout de l'animal
            $animal = new Animal();
            
-           $animal->setName($faker->name());
+           $animal->setName($faker->firstName());
            $animal->setSpecies($faker->randomElement($speciesObjects));
-           $animal->setGender($faker->randomElement(['Male', 'Femelle']));
+           $animal->setGender($faker->boolean());
            $animal->setAge($faker->randomFloat(1, 1, 15));
            $animal->setPicture($faker->randomElement($imageAninmal));
-           $animal->setChildCompatibility($faker->randomElement(['True', 'False']));
-           $animal->setOtherAnimalCompatibility($faker->randomElement(['True', 'False']));
-           $animal->setGardenNeeded($faker->randomElement(['True', 'False']));
+           $animal->setChildCompatibility($faker->boolean());
+           $animal->setOtherAnimalCompatibility($faker->boolean());
+           $animal->setGardenNeeded($faker->boolean());
            $animal->setStatus($faker->randomFloat(1, 0, 4));
            $animal->setDescription($faker->realText(150));
            
