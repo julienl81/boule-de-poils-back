@@ -26,8 +26,8 @@ class AnimalType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'label' => 'Genre',
                 'choices'  => [
-                    'Male' => 'male',
-                    'Femelle' => 'femelle',
+                    'Male' => '1',
+                    'Femelle' => '0',
                 ],
                 'expanded' => true,
             ])
@@ -40,24 +40,24 @@ class AnimalType extends AbstractType
             ->add('child_compatibility', ChoiceType::class, [
                 'label' => 'Sociable avec les enfants ?',
                 'choices'  => [
-                    'Oui' => 'true',
-                    'Non' => 'false',
+                    'Oui' => true,
+                    'Non' => false,
                 ],
                 'expanded' => true,
             ])
             ->add('other_animal_compatibility', ChoiceType::class, [
                 'label' => 'Sociable avec autres animaux ?',
                 'choices'  => [
-                    'Oui' => 'true',
-                    'Non' => 'false',
+                    'Oui' => true,
+                    'Non' => false,
                 ],
                 'expanded' => true,
             ])
             ->add('garden_needed', ChoiceType::class, [
                 'label' => 'Besoin d\'un jardin ?',
                 'choices'  => [
-                    'Oui' => 'true',
-                    'Non' => 'false',
+                    'Oui' => true,
+                    'Non' => false,
                 ],
                 'expanded' => true,
             ])

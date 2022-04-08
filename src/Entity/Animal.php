@@ -43,19 +43,19 @@ class Animal
     private $age;
 
     /**
-     * @ORM\Column(type="boolean", length=255)
+     * @ORM\Column(type="boolean")
      * @Groups("api_animals_list")
      */
     private $child_compatibility;
 
     /**
-     * @ORM\Column(type="boolean", length=255)
+     * @ORM\Column(type="boolean")
      * @Groups("api_animals_list")
      */
     private $other_animal_compatibility;
 
     /**
-     * @ORM\Column(type="boolean", length=255)
+     * @ORM\Column(type="boolean")
      * @Groups("api_animals_list")
      */
     private $garden_needed;
@@ -110,12 +110,12 @@ class Animal
         return $this;
     }
 
-    public function getGender(): ?string
+    public function getGender(): ?int
     {
         return $this->gender;
     }
 
-    public function setGender(string $gender): self
+    public function setGender(int $gender): self
     {
         $this->gender = $gender;
 
@@ -146,36 +146,36 @@ class Animal
         return $this;
     }
 
-    public function getChildCompatibility(): ?string
+    public function getChildCompatibility(): ?bool
     {
         return $this->child_compatibility;
     }
 
-    public function setChildCompatibility(string $child_compatibility): self
+    public function setChildCompatibility(bool $child_compatibility): self
     {
         $this->child_compatibility = $child_compatibility;
 
         return $this;
     }
 
-    public function getOtherAnimalCompatibility(): ?string
+    public function getOtherAnimalCompatibility(): ?bool
     {
         return $this->other_animal_compatibility;
     }
 
-    public function setOtherAnimalCompatibility(string $other_animal_compatibility): self
+    public function setOtherAnimalCompatibility(bool $other_animal_compatibility): self
     {
         $this->other_animal_compatibility = $other_animal_compatibility;
 
         return $this;
     }
 
-    public function getGardenNeeded(): ?string
+    public function getGardenNeeded(): ?bool
     {
         return $this->garden_needed;
     }
 
-    public function setGardenNeeded(string $garden_needed): self
+    public function setGardenNeeded(bool $garden_needed): self
     {
         $this->garden_needed = $garden_needed;
 

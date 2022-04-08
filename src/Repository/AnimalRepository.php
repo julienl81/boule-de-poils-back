@@ -79,17 +79,62 @@ class AnimalRepository extends ServiceEntityRepository
         return $query->getResult();
 
         
-        // return $this->createQueryBuilder('a')
-        //     ->andWhere('a.exampleField = :val')
-        //     ->setParameter('val', $value)
-        //     ->orderBy('a.id', 'ASC')
-        //     ->setMaxResults(10)
-        //     ->getQuery()
-        //     ->getResult()
-        // ;
     }
 
+    public function findItemsMin()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT MIN(a.id)
+            FROM App\Entity\Animal a
+            '
+        );
+
+        return $query->getResult();
+    }
+
+    public function findItemsMax()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT MAX(a.id)
+            FROM App\Entity\Animal a
+            '
+        );
+
+        return $query->getResult();
+    }
+
+    /**
+     * @return Animal[] Returns an array of Animal objects
+     */
+    public function findAnimalsForCaroussel()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT a.id, a.picture, a.name, a.description
+            FROM App\Entity\Animal a
+            '
+        )
+        //->setMaxResults(10)
+        ;
+
+        return $query->getResult();
+    }
     
+    
+    // return $this->createQueryBuilder('a')
+    //     ->andWhere('a.exampleField = :val')
+    //     ->setParameter('val', $value)
+    //     ->orderBy('a.id', 'ASC')
+    //     ->setMaxResults(10)
+    //     ->getQuery()
+    //     ->getResult()
+
+    // ;
         // public function findAllAnimals()
     // {
     //     return $this->createQueryBuilder('a')

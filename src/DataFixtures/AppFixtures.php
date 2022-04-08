@@ -234,7 +234,7 @@ class AppFixtures extends Fixture
 
 
        // ! On veut créer une liste d'animaux
-       $nbAnimal = 500;
+       $nbAnimal = 5000;
 
        for ($animalCount = 0; $animalCount < $nbAnimal; $animalCount++) {
            // ajout de l'animal
