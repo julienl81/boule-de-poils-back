@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
         $association->setEmail('association@association.com');
         $association->setRole('ROLE_ASSOCIATION');
         $association->setPassword('association');
-        $admin->setActive(1); // 1 = true
+        $association->setActive(1); // 1 = true
         // Attention $manager = le Manager de Doctrine :D
         $manager->persist($association);
 

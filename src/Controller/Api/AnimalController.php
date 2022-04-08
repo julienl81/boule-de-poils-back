@@ -49,7 +49,7 @@ class AnimalController extends AbstractController
         }
         
         $species = $parsed_json->species; 
-
+// Todo vérouiller le choix des ages
         $age = $parsed_json->age;    
         if ($age === 0) {
             $ageMin = 0;

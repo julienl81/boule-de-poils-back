@@ -10,6 +10,8 @@ C'est temporaire le temps que certains champs soit définitivement validés.
 
 ## Composer et dépendances ##
 
+Warning - Passer sur la branche develop
+
 Faire un composer install dans le terminal pour installer le dossier vendors et les dépendances du projet
 
 ```sh
