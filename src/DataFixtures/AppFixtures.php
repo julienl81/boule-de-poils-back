@@ -6,6 +6,7 @@ use App\Entity\Animal;
 use App\Entity\Association;
 use App\Entity\Department;
 use App\Entity\Species;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -43,6 +44,32 @@ class AppFixtures extends Fixture
             // On l'enregistre dans le manager
            $manager->persist($species);
         }
+
+        // ! On crée des users
+        $admin = new User();
+        $admin->setUsername('admin');
+        $admin->setEmail('admin@admin.com');
+        $admin->setRole('ROLE_ADMIN');
+        $admin->setPassword('admin');
+        $admin->setActive(1); // 1 = true
+        $manager->persist($admin);
+
+        $association = new User();
+        $association->setUsername('association');
+        $association->setEmail('association@association.com');
+        $association->setRole('ROLE_ASSOCIATION');
+        $association->setPassword('association');
+        $admin->setActive(1); // 1 = true
+        // Attention $manager = le Manager de Doctrine :D
+        $manager->persist($association);
+
+        $user = new User();
+        $user->setUsername('user');
+        $user->setEmail('user@user.com');
+        $user->setRole('ROLE_USER');
+        $user->setPassword('user');
+        $user->setActive(1); // 1 = true
+        $manager->persist($user);
         
 
         // ! On veut créer une liste des départements et les stocker dans un tableau
@@ -182,12 +209,13 @@ class AppFixtures extends Fixture
            $association->setCity($faker->city());
            $association->setPhoneNumber($faker->phoneNumber());
            $association->setEmail($faker->email());
-           $association->setActive($faker->randomFloat(1, 0, 1));
+           $association->setActive($faker->boolean(80));
            
            $manager->persist($association);
            $associationObjects[] = $association;
            
         }
+
 
        // ! On créer une liste d'url d'images personnalisées
        $imageAninmal = [
@@ -245,14 +273,11 @@ class AppFixtures extends Fixture
            $animal->setGender($faker->numberBetween(0, 1));
            $animal->setAge($faker->randomFloat(1, 1, 20));
            $animal->setPicture($faker->randomElement($imageAninmal));
-           $animal->setChildCompatibility($faker->randomFloat(1, 0, 1));
-           $animal->setOtherAnimalCompatibility($faker->numberBetween(0, 1));
-           $animal->setGardenNeeded($faker->numberBetween(0, 1));
+           $animal->setChildCompatibility($faker->boolean());
+           $animal->setOtherAnimalCompatibility($faker->boolean());
+           $animal->setGardenNeeded($faker->boolean());
            $animal->setStatus($faker->randomFloat(1, 0, 4));
            $animal->setDescription($faker->realText(150));
-           
-           //    $randomDepartmentNb = mt_rand(0,100);
-           //    $department = $randomDepartmentNb;
            $animal->setAssociation($faker->randomElement($associationObjects));
            $animal->setDepartment($faker->randomElement($departmentObjects));
 
