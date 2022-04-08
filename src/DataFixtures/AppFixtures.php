@@ -245,7 +245,7 @@ class AppFixtures extends Fixture
            $animal->setGender($faker->numberBetween(0, 1));
            $animal->setAge($faker->randomFloat(1, 1, 20));
            $animal->setPicture($faker->randomElement($imageAninmal));
-           $animal->setChildCompatibility($faker->numberBetween(0, 1));
+           $animal->setChildCompatibility($faker->randomFloat(1, 0, 1));
            $animal->setOtherAnimalCompatibility($faker->numberBetween(0, 1));
            $animal->setGardenNeeded($faker->numberBetween(0, 1));
            $animal->setStatus($faker->randomFloat(1, 0, 4));
