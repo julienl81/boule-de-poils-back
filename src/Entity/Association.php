@@ -23,12 +23,13 @@ class Association
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
+     * @Groups("api_associations_list")
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * 
+     * @Groups("api_associations_list")
      */
     private $description;
 
@@ -41,30 +42,35 @@ class Association
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
+     * @Groups("api_associations_list")
      */
     private $street;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
+     * @Groups("api_associations_list")
      */
     private $zip_code;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
+     * @Groups("api_associations_list")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("api_animals_list")
+     * @Groups("api_associations_list")
      */
     private $phone_number;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
+     * @Groups("api_associations_list")
      */
     private $email;
 
