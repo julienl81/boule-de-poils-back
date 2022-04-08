@@ -17,12 +17,14 @@ class Species
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("api_species_list")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
+     * @Groups("api_species_list")
      */
     private $name;
 
