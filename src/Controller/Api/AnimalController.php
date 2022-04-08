@@ -20,13 +20,13 @@ use Symfony\Component\Serializer\Serializer;
 class AnimalController extends AbstractController
 {
     /**
-     * @Route("/api/animal/results", name="app_api_animal", methods={"POST","GET"})
+     * @Route("/api/animal/form", name="app_api_animal", methods={"POST","GET"})
      */
     public function getResults(Request $request, SerializerInterface $serializer, AnimalRepository $animalRepository, ValidatorInterface $validator, ManagerRegistry $doctrine): Response
     {
 
         // Récupérer le contenu JSON
-        $jsonContent = $request->getContent();        
+        $jsonContent = $request->getContent();
     
         $parsed_json = json_decode($jsonContent);
         dump($parsed_json);
@@ -110,13 +110,15 @@ class AnimalController extends AbstractController
 
 
         $animalsCount = $animalRepository->findAnimalsForCaroussel();
-        // $key = array_rand(array_flip($animalsCount),10);
-        // dd($key);
-        // $value = $animalsCount[$key][0];
-        // dd($value);
-        //dd($animalsCount);
 
-        return $this->json($animalsCount, Response::HTTP_OK);
+        $keys = array_rand($animalsCount,10);
+
+        $results = [];
+        foreach ($keys as $key) {
+            $results[] = $animalsCount[$key];
+        }
+
+        return $this->json($results, Response::HTTP_OK);
     }
 }
 
