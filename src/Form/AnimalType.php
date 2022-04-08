@@ -26,8 +26,8 @@ class AnimalType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'label' => 'Genre',
                 'choices'  => [
-                    'Male' => '1',
-                    'Femelle' => '0',
+                    'Male' => 1,
+                    'Femelle' => 0,
                 ],
                 'expanded' => true,
             ])

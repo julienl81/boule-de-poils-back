@@ -50,6 +50,7 @@ class AnimalController extends AbstractController
      */
     public function show(Animal $animal): Response
     {
+        //dd($animal->getGardenNeeded());
         return $this->render('back/animal/show.html.twig', [
             'animal' => $animal,
         ]);

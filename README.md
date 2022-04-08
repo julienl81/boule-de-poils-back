@@ -3,6 +3,11 @@
 Vous avez cloné ce repo avec succès, c'est un bon début ;)
 Pour continuer l'installation suivez les étapes ci-dessous :
 
+## -> Si vous avez déja une BDD ##
+
+Il est préférable de supprimer la database bouledepoils manuelement dans Adminer avant de faire l'installation.
+C'est temporaire le temps que certains champs soit définitivement validés.
+
 ## Composer et dépendances ##
 
 Faire un composer install dans le terminal pour installer le dossier vendors et les dépendances du projet
