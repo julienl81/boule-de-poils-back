@@ -25,7 +25,7 @@ class Animal
     private $name;
 
     /**
-     * @ORM\Column(type="boolean", length=255)
+     * @ORM\Column(type="smallint")
      * @Groups("api_animals_list")
      */
     private $gender;
