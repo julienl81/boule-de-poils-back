@@ -17,6 +17,7 @@ class Department
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("api_departments_list")
      */
     private $id;
 
@@ -28,6 +29,7 @@ class Department
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("api_animals_list")
+     * @Groups("api_departments_list")
      */
     private $name;
 
