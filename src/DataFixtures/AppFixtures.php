@@ -47,7 +47,7 @@ class AppFixtures extends Fixture
 
         // ! On crée des users
         $admin = new User();
-        $admin->setUsername('admin');
+        $admin->setPseudo('admin');
         $admin->setEmail('admin@admin.com');
         $admin->setRole('ROLE_ADMIN');
         $admin->setPassword('admin');
@@ -55,7 +55,7 @@ class AppFixtures extends Fixture
         $manager->persist($admin);
 
         $association = new User();
-        $association->setUsername('association');
+        $association->setPseudo('association');
         $association->setEmail('association@association.com');
         $association->setRole('ROLE_ASSOCIATION');
         $association->setPassword('association');
@@ -64,7 +64,7 @@ class AppFixtures extends Fixture
         $manager->persist($association);
 
         $user = new User();
-        $user->setUsername('user');
+        $user->setPseudo('user');
         $user->setEmail('user@user.com');
         $user->setRole('ROLE_USER');
         $user->setPassword('user');
