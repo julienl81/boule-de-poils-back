@@ -22,7 +22,8 @@
             </tr>
             <tr>
                 <th>Genre</th>
-                <td>{{ animal.gender }}</td>
+                <td>{% if animal.gender == '0' %} Femelle{% elseif animal.gender == '1' %} Male{% endif %}</td>
+                <td><img class="img_backoffice_index" src="{{ animal.picture }}"></td>
             </tr>
             <tr>
                 <th>Photo</th>
@@ -34,19 +35,19 @@
             </tr>
             <tr>
                 <th>Sociable avec les enfants ?</th>
-                <td>{{ animal.childCompatibility }}</td>
+                <td>{{ animal.childCompatibility ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Sociable avec autres animaux ?</th>
-                <td>{{ animal.otherAnimalCompatibility }}</td>
+                <td>{{ animal.otherAnimalCompatibility ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>Besoin d'un jardin ?</th>
-                <td>{{ animal.gardenNeeded }}</td>
+                <td>{{ animal.gardenNeeded ? 'Oui' : 'Non'}}</td>
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ animal.status }}</td>
+                <td>{% if animal.status == '0' %} Disponible{% elseif animal.status == '1' %} Resa en cours{% elseif animal.status == '2' %} Indisponible{% elseif animal.status == '3' %} Adopté{% endif %}</td>
             </tr>
             <tr>
                 <th>Description</th>

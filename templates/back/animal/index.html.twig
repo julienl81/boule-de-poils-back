@@ -28,13 +28,13 @@
             <tr>
                 <td>{{ animal.id }}</td>
                 <td>{{ animal.name }}</td>
-                <td>{{ animal.gender }}</td>
+                <td>{% if animal.gender == '0' %} Femelle{% elseif animal.gender == '1' %} Male{% endif %}</td>
                 <td><img class="img_backoffice_index" src="{{ animal.picture }}"></td>
                 <td>{{ animal.age }}</td>
-                <td>{{ animal.childCompatibility }}</td>
-                <td>{{ animal.otherAnimalCompatibility }}</td>
-                <td>{{ animal.gardenNeeded }}</td>
-                <td>{{ animal.status }}</td>
+                <td>{{ animal.childCompatibility ? 'Oui' : 'Non' }}</td>
+                <td>{{ animal.otherAnimalCompatibility ? 'Oui' : 'Non' }}</td>
+                <td>{{ animal.gardenNeeded ? 'Oui' : 'Non' }}</td>
+                <td>{% if animal.status == '0' %} Disponible{% elseif animal.status == '1' %} Resa en cours{% elseif animal.status == '2' %} Indisponible{% elseif animal.status == '3' %} Adopté{% endif %}</td>
                 <td>{{ animal.description }}</td>
                 <td>
                     <a href="{{ path('app_animal_show', {'id': animal.id}) }}">Voir plus</a>
