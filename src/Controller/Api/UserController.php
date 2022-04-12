@@ -26,7 +26,7 @@ class UserController extends AbstractController
 {
     /**
     * Creates a new user
-    * @Route("", name="create", methods={"GET"})
+    * @Route("", name="create", methods="POST")
     * @return Response
     */
     public function create(ManagerRegistry $doctrine, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, ValidatorInterface $validator, SerializerInterface $serializer): Response
@@ -40,72 +40,73 @@ class UserController extends AbstractController
         //     ];
         //     return $this->json($data, Response::HTTP_FORBIDDEN);
         // }
-        // // récupérer les données depuis la requete
-        // $userAsJson = $request->getContent();
 
-        // /** @var User $user */
-        // $user = $serializer->deserialize($userAsJson, User::class, JsonEncoder::FORMAT);
+        // récupérer les données depuis la requete
+        $userAsJson = $request->getContent();
+
+        /** @var User $user */
+        $user = $serializer->deserialize($userAsJson, User::class, JsonEncoder::FORMAT);
 
         /**
          * @link https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
          */
 
-        // $hashedPassword = $hasher->hashPassword($user, $user->getPassword());
-        // $user->setPassword($hashedPassword);
+        $hashedPassword = $hasher->hashPassword($user, $user->getPassword());
+        $user->setPassword($hashedPassword);
 
-        // // enregistrer le user en BDD
-        // $entityManager = $doctrine->getManager();
+        // enregistrer le user en BDD
+        $entityManager = $doctrine->getManager();
 
-        // $entityManager->persist($user);
+        $entityManager->persist($user);
 
-        // $entityManager->flush();
+        $entityManager->flush();
 
-        // $data = [
-        //     'id' => $user->getId(),
-        // ];
+        $data = [
+            'id' => $user->getId(),
+        ];
 
-        // return $this->json($data, Response::HTTP_CREATED);
+        return $this->json($data, Response::HTTP_CREATED);
 
 
 
-        // Récupérer le contenu JSON
-        $jsonContent = $request->getContent();
+    //     // Récupérer le contenu JSON
+    //     $jsonContent = $request->getContent();
 
-        $parsed_json = json_decode($jsonContent);
-        dump($parsed_json);
+    //     $parsed_json = json_decode($jsonContent);
+    //     dump($parsed_json);
 
-        // Mettre les critères du Json en variables php
-        $username = $parsed_json->username;   
-        $email = $parsed_json->email; 
-        $password = $parsed_json->password;    
+    //     // Mettre les critères du Json en variables php
+    //     $username = $parsed_json->username;   
+    //     $email = $parsed_json->email; 
+    //     $password = $parsed_json->password;    
             
-        // Créer un nouvel utilisateur
-        $user = new User();
-        $user->setUsername($username);
-        $user->setEmail($email);
-        $user->setPassword($password);
+    //     // Créer un nouvel utilisateur
+    //     $user = new User();
+    //     $user->setUsername($username);
+    //     $user->setEmail($email);
+    //     $user->setPassword($password);
 
-        // Enregistrer l'utilisateur en BDD
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+    //     // Enregistrer l'utilisateur en BDD
+    //     $em = $this->getDoctrine()->getManager();
+    //     $em->persist($user);
+    //     $em->flush();
 
 
-        // Retourner le nouvel utilisateur
-        return $this->json($user, 201, [], ['groups' => 'api_user']);
+    //     // Retourner le nouvel utilisateur
+    //     return $this->json($user, 201, [], ['groups' => 'api_user']);
     
 
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->submit($request->request->all());
+    //     $user = new User();
+    //     $form = $this->createForm(UserType::class, $user);
+    //     $form->submit($request->request->all());
             
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $em = $this->getDoctrine()->getManager();
+    //         $em->persist($user);
+    //         $em->flush();
             
-            return $this->json($user, 201, [], ['groups' => 'api_user']);
-        }
+    //         return $this->json($user, 201, [], ['groups' => 'api_user']);
+    //     }
     }
 
     /**
@@ -131,5 +132,19 @@ class UserController extends AbstractController
 
         return $this->json($user, Response::HTTP_OK, [], ['groups' => "api_user"]);
     }
+
+    /**
+     * Undocumented function
+     * @Route("", name="list", methods="GET")
+     * @return Response
+     */
+    public function list(UserRepository $userRepository): Response
+    {
+        // préparer les données
+        $userList = $userRepository->findAll();
+
+        return $this->json($userList, Response::HTTP_OK, [], ['groups' => "api_user"]);
+    }
+
 
 }

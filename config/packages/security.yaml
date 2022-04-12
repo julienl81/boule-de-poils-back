@@ -22,6 +22,8 @@ security:
             json_login:
                 # api_login is a route we will create below
                 check_path: /api/login_check
+                username_path: username
+                password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
