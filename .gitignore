@@ -10,3 +10,6 @@
 
 ###< symfony/framework-bundle ###
 /vpn.md
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

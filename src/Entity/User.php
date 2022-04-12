@@ -4,8 +4,9 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -32,8 +33,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * @var string The hashed password
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -43,10 +44,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $active;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="json")
      * @Groups("api_user")
      */
-    private $role;
+    private $roles;
 
     public function getId(): ?int
     {
@@ -117,7 +118,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function getRole(): ?string
+    public function getRoles(): ?array
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLES_USER
@@ -126,9 +127,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRole(string $role): self
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
