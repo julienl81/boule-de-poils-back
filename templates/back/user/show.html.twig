@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <th>Username</th>
-                <td>{{ user.username }}</td>
+                <td>{{ user.pseudo }}</td>
             </tr>
             <tr>
                 <th>Email</th>
@@ -26,11 +26,11 @@
             </tr>
             <tr>
                 <th>Active</th>
-                <td>{{ user.active ? 'Yes' : 'No' }}</td>
+                <td>{{ user.active ? 'Actif' : 'Inactif' }}</td>
             </tr>
             <tr>
                 <th>Role</th>
-                <td>{{ user.role }}</td>
+                <td>{{ user.roles|join(', ')  }}</td>
             </tr>
         </tbody>
     </table>
