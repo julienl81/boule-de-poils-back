@@ -47,27 +47,27 @@ class AppFixtures extends Fixture
 
         // ! On crée des users
         $admin = new User();
-        $admin->setUsername('admin');
+        $admin->setPseudo('admin');
         $admin->setEmail('admin@admin.com');
-        $admin->setRole('ROLE_ADMIN');
-        $admin->setPassword('admin');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setPassword('$2y$13$rI53W6ngwXU7RKhRKcheUu3VeByV8LcY3FKMLeKkXlFlpGUDN0mPu');
         $admin->setActive(1); // 1 = true
         $manager->persist($admin);
 
         $association = new User();
-        $association->setUsername('association');
+        $association->setPseudo('association');
         $association->setEmail('association@association.com');
-        $association->setRole('ROLE_ASSOCIATION');
-        $association->setPassword('association');
+        $association->setRoles(['ROLE_ASSOCIATION']);
+        $association->setPassword('$2y$13$Wwo6UdqNiPtch/xI7Dg9bOGkeaiWwvp/BIYrQH1GLCFqBYpouYTvy');
         $association->setActive(1); // 1 = true
         // Attention $manager = le Manager de Doctrine :D
         $manager->persist($association);
 
         $user = new User();
-        $user->setUsername('user');
+        $user->setPseudo('user');
         $user->setEmail('user@user.com');
-        $user->setRole('ROLE_USER');
-        $user->setPassword('user');
+        $user->setRoles(['ROLE_USER']);
+        $user->setPassword('$2y$13$s5XZoIFczj/24jOvze/B4.M2FrJw02JmQZ4Z2o559u6B/WZcnuevS');
         $user->setActive(1); // 1 = true
         $manager->persist($user);
         
