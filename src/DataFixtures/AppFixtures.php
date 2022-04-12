@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
         $admin->setPseudo('admin');
         $admin->setEmail('admin@admin.com');
         $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setPassword('admin');
+        $admin->setPassword('$2y$13$mpcFCRBquPyK9t95MZJBPeE0gPjHGfMoA.09ZjWlCAcL0ZQRvXWi2');
         $admin->setActive(1); // 1 = true
         $manager->persist($admin);
 
@@ -58,7 +58,7 @@ class AppFixtures extends Fixture
         $association->setPseudo('association');
         $association->setEmail('association@association.com');
         $association->setRoles(['ROLE_ASSOCIATION']);
-        $association->setPassword('association');
+        $association->setPassword('$2y$13$zM5O0WCkukKEDR3osiDnMeF2lDHsVUmCDE5WLkk6RBAGPnhlZ2fLK');
         $association->setActive(1); // 1 = true
         // Attention $manager = le Manager de Doctrine :D
         $manager->persist($association);
@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
         $user->setPseudo('user');
         $user->setEmail('user@user.com');
         $user->setRoles(['ROLE_USER']);
-        $user->setPassword('user');
+        $user->setPassword('$2y$13$OC8AAfLtX5T/8P8rL0qNQOwZHNDCsTEYTSXTzcTKG2WG/1R0VnYVK');
         $user->setActive(1); // 1 = true
         $manager->persist($user);
         
