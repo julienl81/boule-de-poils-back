@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
         $admin = new User();
         $admin->setPseudo('admin');
         $admin->setEmail('admin@admin.com');
-        $admin->setRole('ROLE_ADMIN');
+        $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPassword('admin');
         $admin->setActive(1); // 1 = true
         $manager->persist($admin);
@@ -57,7 +57,7 @@ class AppFixtures extends Fixture
         $association = new User();
         $association->setPseudo('association');
         $association->setEmail('association@association.com');
-        $association->setRole('ROLE_ASSOCIATION');
+        $association->setRoles(['ROLE_ASSOCIATION']);
         $association->setPassword('association');
         $association->setActive(1); // 1 = true
         // Attention $manager = le Manager de Doctrine :D
@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setPseudo('user');
         $user->setEmail('user@user.com');
-        $user->setRole('ROLE_USER');
+        $user->setRoles(['ROLE_USER']);
         $user->setPassword('user');
         $user->setActive(1); // 1 = true
         $manager->persist($user);
