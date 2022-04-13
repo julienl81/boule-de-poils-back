@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 /**
-* @Route("/api/users", name="app_api_users")
+* @Route("/api/user/form", name="app_api_user")
 */
 class UserController extends AbstractController
 {
@@ -33,7 +33,7 @@ class UserController extends AbstractController
     {
         // if (! $this->isGranted("ROLE_ADMIN"))
         // {
-        //     $data = 
+        //     $data =
         //     [
         //         'error' => true,
         //         'msg' => 'Il faut être admin pour accéder à ceci'
@@ -66,48 +66,8 @@ class UserController extends AbstractController
         ];
 
         return $this->json($data, Response::HTTP_CREATED);
-
-
-
-    //     // Récupérer le contenu JSON
-    //     $jsonContent = $request->getContent();
-
-    //     $parsed_json = json_decode($jsonContent);
-    //     dump($parsed_json);
-
-    //     // Mettre les critères du Json en variables php
-    //     $username = $parsed_json->username;   
-    //     $email = $parsed_json->email; 
-    //     $password = $parsed_json->password;    
-            
-    //     // Créer un nouvel utilisateur
-    //     $user = new User();
-    //     $user->setUsername($username);
-    //     $user->setEmail($email);
-    //     $user->setPassword($password);
-
-    //     // Enregistrer l'utilisateur en BDD
-    //     $em = $this->getDoctrine()->getManager();
-    //     $em->persist($user);
-    //     $em->flush();
-
-
-    //     // Retourner le nouvel utilisateur
-    //     return $this->json($user, 201, [], ['groups' => 'api_user']);
-    
-
-    //     $user = new User();
-    //     $form = $this->createForm(UserType::class, $user);
-    //     $form->submit($request->request->all());
-            
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $em = $this->getDoctrine()->getManager();
-    //         $em->persist($user);
-    //         $em->flush();
-            
-    //         return $this->json($user, 201, [], ['groups' => 'api_user']);
-    //     }
     }
+
 
     /**
     * Get a user details
