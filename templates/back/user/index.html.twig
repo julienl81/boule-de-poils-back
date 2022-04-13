@@ -15,6 +15,7 @@
                 <th>Mot de passe</th>
                 <th>Status</th>
                 <th>Rôle</th>
+                <th>Association</th>
                 <th></th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td>{{ user.password }}</td>
                 <td>{{ user.active ? 'Actif' : 'Inactif' }}</td>
                 <td>{{ user.roles|join(', ') }}</td>
+                <td>{{ user.association|join(', ') }}</td>
                 <td>
                     <a href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir plus</a>
                     <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>

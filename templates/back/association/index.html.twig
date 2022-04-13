@@ -13,7 +13,7 @@
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Siren</th>
-                <th>Rue</th>
+                <th>Adresse</th>
                 <th>Code postal</th>
                 <th>Ville</th>
                 <th>Numéro de téléphone</th>
@@ -34,7 +34,7 @@
                 <td>{{ association.city }}</td>
                 <td>{{ association.phoneNumber }}</td>
                 <td>{{ association.email }}</td>
-                <td>{{ association.active ? 'Yes' : 'No' }}</td>
+                <td>{{ association.active ? 'Actif' : 'Inactif' }}</td>
                 <td>
                     <a href="{{ path('app_association_show', {'id': association.id}) }}">Voir plus</a>
                     <a href="{{ path('app_association_edit', {'id': association.id}) }}">Modifier</a>

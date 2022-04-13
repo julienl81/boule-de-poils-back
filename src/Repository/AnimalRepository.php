@@ -44,29 +44,44 @@ class AnimalRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-    /**
-     * @return Animal[] Returns an array of Animal objects
-     */
     public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department)
     {
-        $entityManager = $this->getEntityManager();
+        $query = $this->createQueryBuilder('a');
 
-        $query = $entityManager->createQuery(
-            'SELECT a
-            FROM App\Entity\Animal a
-            WHERE 
-                a.species = :species AND 
-                a.gender BETWEEN :gender_min AND :gender_max AND 
-                a.child_compatibility = :child_compatibility AND 
-                a.other_animal_compatibility = :other_animal_compatibility AND 
-                a.garden_needed = :garden_needed AND 
-                a.age BETWEEN :age_min AND :age_max AND
-                a.department = :department AND
-                a.status BETWEEN 0 AND :status  
-            ORDER BY a.name ASC'
-        )
-        // Todo - Voir pour filtrer age_min et age_max avec < & >
-        ->setParameters(array(
+            if ($child_compatibility == 0) {
+                $query->andWhere('a.child_compatibility >= :child_compatibility');
+            }
+            else {
+                $query->andWhere('a.child_compatibility = :child_compatibility');
+            }
+
+            if ($other_animal_compatibility == 0) {
+                $query->andWhere('a.other_animal_compatibility >= :other_animal_compatibility');
+            }
+            else {
+                $query->andWhere('a.other_animal_compatibility = :other_animal_compatibility');
+            }
+
+            if ($garden_needed == 0) {
+                $query->andWhere('a.garden_needed >= :garden_needed');
+            }
+            else {
+                $query->andWhere('a.garden_needed = :garden_needed');
+            }
+            
+            if ($department == 0) {
+                $query->andWhere('a.department >= :department');
+            }
+            else {
+                $query->andWhere('a.department = :department');
+            }
+
+            $query->andWhere('a.species = :species');
+            $query->andWhere('a.gender BETWEEN :gender_min AND :gender_max');
+            $query->andWhere('a.age BETWEEN :age_min AND :age_max');
+            $query->andWhere('a.status BETWEEN 0 AND :status');
+            
+            $query->setParameters(array(
             'species' => $species, 
             'gender_min' => $genderMin, 
             'gender_max' => $genderMax, 
@@ -78,38 +93,52 @@ class AnimalRepository extends ServiceEntityRepository
             'status' => $status,
             'department' => $department
         ));
+
+        return $query->getQuery()->getResult();
+    }
+
+    // /**
+    //  * @return Animal[] Returns an array of Animal objects
+    //  */
+    // public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department)
+    // {
+    //     $entityManager = $this->getEntityManager();
+
+    //     $query = $entityManager->createQuery(
+    //         'SELECT a
+    //         FROM App\Entity\Animal a
+    //         WHERE 
+    //             a.species = :species AND 
+    //             a.gender BETWEEN :gender_min AND :gender_max AND 
+    //             a.child_compatibility = :child_compatibility AND 
+    //             a.other_animal_compatibility = :other_animal_compatibility AND 
+    //             a.garden_needed = :garden_needed AND 
+    //             a.age BETWEEN :age_min AND :age_max AND
+    //             a.department = :department AND
+    //             a.status BETWEEN 0 AND :status  
+    //         ORDER BY a.name ASC'
+    //     )
+    //     // Todo - Voir pour filtrer age_min et age_max avec < & >
+    //     ->setParameters(array(
+    //         'species' => $species, 
+    //         'gender_min' => $genderMin, 
+    //         'gender_max' => $genderMax, 
+    //         'age_min' => $ageMin, 
+    //         'age_max' => $ageMax, 
+    //         'child_compatibility' => $child_compatibility, 
+    //         'other_animal_compatibility' => $other_animal_compatibility, 
+    //         'garden_needed' => $garden_needed, 
+    //         'status' => $status,
+    //         'department' => $department
+    //     ));
  
-        return $query->getResult();
+    //     return $query->getResult();
 
-        //
+    //     //
         
-    }
+    // }
 
-    public function findItemsMin()
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT MIN(a.id)
-            FROM App\Entity\Animal a
-            '
-        );
-
-        return $query->getResult();
-    }
-
-    public function findItemsMax()
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT MAX(a.id)
-            FROM App\Entity\Animal a
-            '
-        );
-
-        return $query->getResult();
-    }
+    
 
     /**
      * @return Animal[] Returns an array of Animal objects
