@@ -63,7 +63,7 @@ class AnimalRepository extends ServiceEntityRepository
             }
 
             if ($garden_needed == 0) {
-                $query->andWhere('a.garden_needed = :garden_needed');
+                $query->andWhere('a.garden_needed >= :garden_needed');
             }
             else {
                 $query->andWhere('a.garden_needed = :garden_needed');
