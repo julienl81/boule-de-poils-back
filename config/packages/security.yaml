@@ -45,18 +45,19 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api/user/form, roles: PUBLIC_ACCESS }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-
+        # # - { path: ^/admin, roles: ROLE_ADMIN }
+        # # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        # - { path: ^/api/user/form, roles: PUBLIC_ACCESS }
+        # - { path: ^/api,      roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api,      roles: PUBLIC_ACCESS }
     role_hierarchy:
         # MANAGER hérite du rôle USER
         # => si on souhaite que les managers et admins postent des critiques en leur nom
         ROLE_ASSOCIATION: ROLE_USER
         # ADMIN hérite du rôle MANAGER
         ROLE_ADMIN: ROLE_ASSOCIATION
+        
 
 when@test:
     security:

@@ -53,6 +53,10 @@ class UserController extends AbstractController
 
         $hashedPassword = $hasher->hashPassword($user, $user->getPassword());
         $user->setPassword($hashedPassword);
+        $user->setRoles(["ROLE_USER"]);
+        $user->setActive("active");
+
+
 
         // enregistrer le user en BDD
         $entityManager = $doctrine->getManager();
@@ -92,6 +96,64 @@ class UserController extends AbstractController
 
         return $this->json($user, Response::HTTP_OK, [], ['groups' => "api_user"]);
     }
+
+
+    /**
+     * Updates a user
+     * 
+     * @Route("/{id}", name="update", methods="PUT", requirements={"id"="\d+"})
+     * @return Response
+     */
+    public function update(ValidatorInterface $validator, int $id, ManagerRegistry $doctrine,  UserPasswordHasherInterface $hasher, Request $request, UserRepository $userRepository, SerializerInterface $serializer): Response
+    {
+        if (! $this->isGranted("ROLE_ADMIN"))
+        {
+            $data = 
+            [
+                'error' => true,
+                'msg' => 'Il faut être admin pour accéder à ce endpoint ( You SHALL not PASS )'
+            ];
+            return $this->json($data, Response::HTTP_FORBIDDEN);
+        }
+
+        // récupérer l'utilisateur dans la BDD
+        $user = $userRepository->find($id);
+
+        // gérer le cas ou l'id n'existe pas en BDD
+        if (is_null($user))
+        {
+            return JsonErrorResponse::sendError('Cet identifiant est inconnu');
+        }
+        // récupérer les données depuis la requete
+        $userAsJson = $request->getContent();
+
+        // modifier l'utilisateur
+        $serializer->deserialize($userAsJson, User::class, JsonEncoder::FORMAT, [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
+        
+        // on veut vérifier si on nous a envoyé un mot de passe
+        // pour cela on va désérialiser le json avec php et vérifier si un champ mot de passe existe
+        $userStdObj = json_decode($userAsJson);
+
+        if (isset($userStdObj->password))
+        {
+            $hashedPassword = $hasher->hashPassword($user, $userStdObj->password);
+            $user->setPassword($hashedPassword);
+        }
+
+        $errors = $validator->validate($user);
+
+        if (count($errors) > 0)
+        {
+            return JsonErrorResponse::sendError((string) $errors, Response::HTTP_BAD_REQUEST);
+        }
+        // enregistrer le user en BDD
+        $entityManager = $doctrine->getManager();
+
+        $entityManager->flush();
+
+        return new Response('', Response::HTTP_NO_CONTENT);
+    }
+
 
     /**
      * Undocumented function
