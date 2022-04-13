@@ -44,7 +44,7 @@ class AnimalRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-    public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department)
+    public function findAnimalsFromSearchFormTest($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department)
     {
         $query = $this->createQueryBuilder('a');
 
@@ -80,6 +80,7 @@ class AnimalRepository extends ServiceEntityRepository
             $query->andWhere('a.gender BETWEEN :gender_min AND :gender_max');
             $query->andWhere('a.age BETWEEN :age_min AND :age_max');
             $query->andWhere('a.status BETWEEN 0 AND :status');
+            
             $query->setParameters(array(
             'species' => $species, 
             'gender_min' => $genderMin, 
