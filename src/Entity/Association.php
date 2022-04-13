@@ -84,9 +84,15 @@ class Association
      */
     private $animals;
 
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="association")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->animals = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -226,6 +232,36 @@ class Association
             // set the owning side to null (unless already changed)
             if ($animal->getAssociation() === $this) {
                 $animal->setAssociation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setAssociation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getAssociation() === $this) {
+                $user->setAssociation(null);
             }
         }
 

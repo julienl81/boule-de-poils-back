@@ -46,6 +46,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Association::class, inversedBy="users")
+     */
+    private $association;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +166,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo($pseudo)
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getAssociation(): ?Association
+    {
+        return $this->association;
+    }
+
+    public function setAssociation(?Association $association): self
+    {
+        $this->association = $association;
 
         return $this;
     }
