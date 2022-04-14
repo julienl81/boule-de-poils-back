@@ -8,6 +8,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method Animal|null find($id, $lockMode = null, $lockVersion = null)
  * @method Animal|null findOneBy(array $criteria, array $orderBy = null)

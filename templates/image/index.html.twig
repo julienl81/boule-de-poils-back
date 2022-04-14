@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ImageController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/var/www/html/apotheose/projet-05-boule-de-poils-back/src/Controller/ImageController.php'|file_link(0) }}">src/Controller/ImageController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/var/www/html/apotheose/projet-05-boule-de-poils-back/templates/image/index.html.twig'|file_link(0) }}">templates/image/index.html.twig</a></code></li>
+    </ul>
+</div>
+
+<div>
+<h4>test upload image avec scipt js</h1>
+<script>
+const App = () => {
+  const [crop, setCrop] = useState({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    console.log(croppedArea, croppedAreaPixels)
+  }, [])
+  return (
+    <div className="App">
+      <div className="crop-container">
+        <Cropper
+          image="https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000"
+          crop={crop}
+          zoom={zoom}
+          aspect={4 / 3}
+          onCropChange={setCrop}
+          onCropComplete={onCropComplete}
+          onZoomChange={setZoom}
+        />
+      </div>
+      <div className="controls">
+        <input
+          type="range"
+          value={zoom}
+          min={1}
+          max={3}
+          step={0.1}
+          aria-labelledby="Zoom"
+          onChange={(e) => {
+            setZoom(e.target.value)
+          }}
+          className="zoom-range"
+        />
+      </div>
+    </div>
+  )
+}
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
+</script>
+</div>
+
+{% endblock %}
