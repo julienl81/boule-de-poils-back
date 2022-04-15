@@ -66,7 +66,7 @@ security:
 
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/user/form, roles: PUBLIC_ACCESS }
-        - { path: ^/api,      roles: IS_AUTHENTICATED_FULLY }
+        #- { path: ^/api,      roles: IS_AUTHENTICATED_FULLY }
         # Bien garder la ligne ci-dessus pour la fin
         - { path: ^/api,      roles: PUBLIC_ACCESS }
 

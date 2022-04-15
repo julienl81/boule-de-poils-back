@@ -41,7 +41,7 @@ class AnimalType extends AbstractType
                 'download_label' => '...',
                 'download_uri' => true,
                 'image_uri' => true,
-                'imagine_pattern' => 'product_image',
+                //'imagine_pattern' => 'product_image',
             ])
             ->add('age', null, [
                 'label' => 'Âge',

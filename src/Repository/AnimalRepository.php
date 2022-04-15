@@ -47,7 +47,7 @@ class AnimalRepository extends ServiceEntityRepository
     }
     public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department)
     {
-        $query = $this->createQueryBuilder('a');
+        $query = $this->createQueryBuilder('a, a.imageName as picture');
 
             if ($child_compatibility == 0) {
                 $query->andWhere('a.child_compatibility >= :child_compatibility');
@@ -149,7 +149,7 @@ class AnimalRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT a.id, a.imageName, a.name, a.description
+            'SELECT a.id, a.imageName as picture, a.name, a.description
             FROM App\Entity\Animal a
             '
         )
