@@ -34,14 +34,14 @@ class AnimalType extends AbstractType
                 'expanded' => true,
             ])
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Photos',
+                'label' => 'Ajouter une photo',
                 'required' => false,
                 'allow_delete' => true,
-                'delete_label' => '...',
+                'delete_label' => 'confirme ',
                 'download_label' => '...',
                 'download_uri' => true,
                 'image_uri' => true,
-                //'imagine_pattern' => '...',
+                'imagine_pattern' => 'product_image',
             ])
             ->add('age', null, [
                 'label' => 'Âge',
