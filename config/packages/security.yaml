@@ -27,7 +27,7 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
-        api:
+        api_secure:
             pattern:   ^/api
             stateless: true
             jwt: ~
@@ -35,6 +35,15 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+
+            form_login:
+                # name of the route created previously
+                login_path: app_api_login # GET => affiche le form
+                check_path: app_api_login # POST => traite le form
+
+            logout:
+                path: app_api_logout
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -45,17 +54,26 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # # - { path: ^/admin, roles: ROLE_ADMIN }
-        # # - { path: ^/profile, roles: ROLE_USER }
-        # - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        # - { path: ^/api/user/form, roles: PUBLIC_ACCESS }
-        # - { path: ^/api,      roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/login, roles: PUBLIC_ACCESS}
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+        # page édition création du backoffice
+        - { path: ^/back/(.*)/(new|edit), roles: ROLE_ADMIN}
+        # Accès des associations à la gestion des animaux
+        - { path: ^/back/(animal), roles: ROLE_ASSOCIATION}
+        # # les utilisateurs doivent avoir accès à leur liste
+        # - { path: ^/favorites, roles: ROLE_USER }
+
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/user/form, roles: PUBLIC_ACCESS }
+        - { path: ^/api,      roles: IS_AUTHENTICATED_FULLY }
+        # Bien garder la ligne ci-dessus pour la fin
         - { path: ^/api,      roles: PUBLIC_ACCESS }
+
     role_hierarchy:
-        # MANAGER hérite du rôle USER
-        # => si on souhaite que les managers et admins postent des critiques en leur nom
+        # ASSOCIATION hérite du rôle USER
         ROLE_ASSOCIATION: ROLE_USER
-        # ADMIN hérite du rôle MANAGER
+        # ADMIN hérite du rôle ASSOCIATION
         ROLE_ADMIN: ROLE_ASSOCIATION
 
 when@test:
