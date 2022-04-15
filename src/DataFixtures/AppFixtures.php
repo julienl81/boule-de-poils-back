@@ -194,7 +194,7 @@ class AppFixtures extends Fixture
 
 
         // ! On veut créer une liste des associations
-        $nbAssociation = 20;
+        $nbAssociation = 10;
 
         // va contenir les objets associations que l'on a créé
         $associationObjects = [];
@@ -262,7 +262,7 @@ class AppFixtures extends Fixture
 
 
        // ! On veut créer une liste d'animaux
-       $nbAnimal = 5000;
+       $nbAnimal = 20;
 
        for ($animalCount = 0; $animalCount < $nbAnimal; $animalCount++) {
            // ajout de l'animal
@@ -272,7 +272,7 @@ class AppFixtures extends Fixture
            $animal->setSpecies($faker->randomElement($speciesObjects));
            $animal->setGender($faker->numberBetween(0, 1));
            $animal->setAge($faker->randomFloat(1, 1, 20));
-           $animal->setPicture($faker->randomElement($imageAninmal));
+           $animal->setImageName($faker->randomElement($imageAninmal));
            $animal->setChildCompatibility($faker->boolean());
            $animal->setOtherAnimalCompatibility($faker->boolean());
            $animal->setGardenNeeded($faker->boolean());

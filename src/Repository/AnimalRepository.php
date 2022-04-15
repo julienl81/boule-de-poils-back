@@ -149,7 +149,7 @@ class AnimalRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT a.id, a.picture, a.name, a.description
+            'SELECT a.id, a.imageName, a.name, a.description
             FROM App\Entity\Animal a
             '
         )

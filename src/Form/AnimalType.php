@@ -36,6 +36,12 @@ class AnimalType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Photos',
                 'required' => false,
+                'allow_delete' => true,
+                'delete_label' => '...',
+                'download_label' => '...',
+                'download_uri' => true,
+                'image_uri' => true,
+                //'imagine_pattern' => '...',
             ])
             ->add('age', null, [
                 'label' => 'Âge',
