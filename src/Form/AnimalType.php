@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Config\VichUploaderConfig;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class AnimalType extends AbstractType         
 {
@@ -31,8 +33,15 @@ class AnimalType extends AbstractType
                 ],
                 'expanded' => true,
             ])
-            ->add('picture', UrlType::class, [
-                'label' => 'Photo',
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Ajouter une photo',
+                'required' => false,
+                'allow_delete' => true,
+                'delete_label' => 'confirme ',
+                'download_label' => '...',
+                'download_uri' => true,
+                'image_uri' => true,
+                'imagine_pattern' => 'product_image',
             ])
             ->add('age', null, [
                 'label' => 'Âge',

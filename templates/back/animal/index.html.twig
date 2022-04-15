@@ -7,6 +7,8 @@
 <div class="container">
     <h1>Liste des animaux</h1>
 
+    <a href="{{ path('app_animal_new') }}">Ajouter</a>
+
     <table class="table">
         <thead>
             <tr>
@@ -29,7 +31,9 @@
                 <td>{{ animal.id }}</td>
                 <td>{{ animal.name }}</td>
                 <td>{% if animal.gender == '0' %} Femelle{% elseif animal.gender == '1' %} Male{% endif %}</td>
-                <td><img class="img_backoffice_index" src="{{ animal.picture }}"></td>
+                <td><img class="img_backoffice_index" src={% if 'http' in animal.imageName %}"{{ animal.imageName }}"{% else %}"{{ asset('images/animaux/')}}{{ animal.imageName }}"{% endif %}></td>
+                {# <td><img class="img_backoffice_index" src={% if '/*https*/' in animal.imageName %}"{{ animal.imageName }}"{% endif %}></td> #}
+                {# <td><img class="img_backoffice_index" src="{{ asset('images/animaux/')}}{{ animal.imageName }}"></td> {% if '/services/' in url %} #}
                 <td>{{ animal.age }}</td>
                 <td>{{ animal.childCompatibility ? 'Oui' : 'Non' }}</td>
                 <td>{{ animal.otherAnimalCompatibility ? 'Oui' : 'Non' }}</td>
@@ -49,6 +53,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_animal_new') }}">Ajouter</a>
     </div>
 {% endblock %}

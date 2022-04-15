@@ -1,0 +1,13 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        product_image:
+            uri_prefix: /images/animaux
+            upload_destination: '%kernel.project_dir%/public/images/animaux'
+
+            namer:
+                service: Vich\UploaderBundle\Naming\UniqidNamer
+
+            # inject_on_load: false
+            # delete_on_update: true
+            # delete_on_remove: true
