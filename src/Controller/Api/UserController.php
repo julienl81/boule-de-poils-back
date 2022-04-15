@@ -18,7 +18,6 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-
 /**
 * @Route("/api/user/form", name="app_api_user")
 */
@@ -31,6 +30,16 @@ class UserController extends AbstractController
     */
     public function add(ManagerRegistry $doctrine, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, ValidatorInterface $validator, SerializerInterface $serializer): Response
     {
+        // Envoyer un message si quelqu'un tente d'accéder à l'endpoint sans autorisation
+        if (! $this->isGranted("ROLE_ADMIN")) {
+            $data =
+            [
+                'error' => true,
+                'msg' => 'Il faut être admin pour accéder à ce endpoint'
+            ];
+            return $this->json($data, Response::HTTP_FORBIDDEN);
+        }
+
         // récupérer les données depuis la requete
         $userAsJson = $request->getContent();
 
@@ -62,7 +71,7 @@ class UserController extends AbstractController
 
     /**
     * Get a user details
-    * 
+    *
     * @Route("/{id}", name="read", methods="GET", requirements={"id"="\d+"})
     * @return Response
     */
@@ -71,9 +80,8 @@ class UserController extends AbstractController
         // préparer les données
         $user = $userRepository->find($id);
 
-        if (is_null($user))
-        {
-            $data = 
+        if (is_null($user)) {
+            $data =
             [
                 'error' => true,
                 'message' => 'Cet identifiant est inconnu',

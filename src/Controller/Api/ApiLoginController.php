@@ -36,6 +36,18 @@ class ApiLoginController extends AbstractController
             //'token' => $token,
         ]);
     }
-  
+
+    /**
+     * Logout
+     * 
+     * @Route("/logout", name="app_api_logout")
+     */
+    public function logout()
+    {
+        // Ce code ne sera jamais exécuté
+        // le composant de sécurité va intercepter la requête avant.
+    }
 }
+  
+
 
