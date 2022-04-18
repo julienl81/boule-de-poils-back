@@ -4,7 +4,19 @@
 
 {% block body %}
 <div class="container">
-    <h1>Fiche de l'animal</h1>
+<div class="d-flex p-2 bd-highlight">
+
+    <div class="picture">
+    <h1>Fiche de {{animal.name}}</h1>
+
+        <img class="img_backoffice_show" src={% if 'http' in animal.imageName %}"{{ animal.imageName }}"{% else %}"{{ asset('images/animaux/')}}{{ animal.imageName }}"{% endif %}>
+         
+        <h3>Description</h3>
+        <span>{{ animal.description }}</span>
+
+    </div>
+
+
 
     <table class="table">
         <tbody>
@@ -24,10 +36,10 @@
                 <th>Genre</th>
                 <td>{% if animal.gender == '0' %} Femelle{% elseif animal.gender == '1' %} Male{% endif %}</td>
             </tr>
-            <tr>
+            {# <tr>
                 <th>Photo</th>
                 <td><img class="img_backoffice_show" src="{{ asset('images/animaux/')}}{{ animal.imageName }}"></td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Age</th>
                 <td>{{ animal.age }}</td>
@@ -48,10 +60,10 @@
                 <th>Status</th>
                 <td>{% if animal.status == '0' %} Disponible{% elseif animal.status == '1' %} Resa en cours{% elseif animal.status == '2' %} Indisponible{% elseif animal.status == '3' %} Adopté{% endif %}</td>
             </tr>
-            <tr>
+            {# <tr>
                 <th>Description</th>
                 <td>{{ animal.description }}</td>
-            </tr>
+            </tr> #}
                         <tr>
                 <th>Association</th>
                 <td>{{ animal.association.name }}</td>
@@ -60,13 +72,20 @@
                 <th>Département d'accueil</th>
                 <td>{{ animal.department.name }}</td>
             </tr>
+
         </tbody>
     </table>
-
-    <a href="{{ path('app_animal_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
-
-    {{ include('back/animal/_delete_form.html.twig') }}
     </div>
+
+<div>
+    
+    <button class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</button>
+
+    <button class="btn btn-warning" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</button>
+
+    <p>{{ include('back/animal/_delete_form.html.twig') }}</p>
+
+</div>
+
+</div>
 {% endblock %}

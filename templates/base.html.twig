@@ -21,6 +21,7 @@
         {% endblock %}
     </head>
     <body>
+    {% block nav %}
         <header>
             <nav class='navbar hide-nav'>
                 <img class="navbar__logo" src="" alt="" />
@@ -53,6 +54,7 @@
                 </ul>
             </nav>
         </header>
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>

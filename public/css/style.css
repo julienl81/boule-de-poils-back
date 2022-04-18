@@ -6,7 +6,8 @@
 }
 
 .img_backoffice_show {
-    width: 200px;
+    width: 300px;
+    border-radius: 1em;
 }
 
 .container {
