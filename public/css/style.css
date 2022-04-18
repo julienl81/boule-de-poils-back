@@ -1,6 +1,8 @@
 
 .img_backoffice_index {
-    width: 100px;
+    width: 75px;
+    height: 75px;
+    border-radius: 1em;
 }
 
 .img_backoffice_show {
@@ -178,5 +180,6 @@
     }
   }
   
-  
-  
+  body {
+    background-color:rgb(241, 239, 239);
+  }
