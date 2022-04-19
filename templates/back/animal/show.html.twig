@@ -13,10 +13,7 @@
          
         <h3>Description</h3>
         <span>{{ animal.description }}</span>
-
     </div>
-
-
 
     <table class="table">
         <tbody>
@@ -77,15 +74,15 @@
     </table>
     </div>
 
-<div>
-    
-    <a class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</a>
+    <div>
+        
+        <a class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</a>
 
-    <a class="btn btn-warning" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
+        <a class="btn btn-warning" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
 
-    <p>{{ include('back/animal/_delete_form.html.twig') }}</p>
+        <p>{{ include('back/animal/_delete_form.html.twig') }}</p>
 
-</div>
+    </div>
 
 </div>
 {% endblock %}

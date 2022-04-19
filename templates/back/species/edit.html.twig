@@ -3,13 +3,13 @@
 {% block title %}Edit Species{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container w-50 mx-auto">
     <h1>Editer une espèce</h1>
 
-    {{ include('back/species/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('back/species/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_species_index') }}">back to list</a>
+    <a class="btn btn-primary float-end" href="{{ path('app_species_index') }}">back to list</a>
 
     {{ include('back/species/_delete_form.html.twig') }}
-    </div>
+</div>
 {% endblock %}

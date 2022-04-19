@@ -6,7 +6,10 @@
 <div class="container">
     <h1>Index des espèces</h1>
 
-    <table class="table">
+    <a class="btn btn-info" href="{{ path('app_species_new') }}">Ajouter</a>
+
+
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -20,8 +23,8 @@
                 <td>{{ species.id }}</td>
                 <td>{{ species.name }}</td>
                 <td>
-                    <a href="{{ path('app_species_show', {'id': species.id}) }}">Voir plus</a>
-                    <a href="{{ path('app_species_edit', {'id': species.id}) }}">Modifier</a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_species_show', {'id': species.id}) }}">Voir plus</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('app_species_edit', {'id': species.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_species_new') }}">Ajouter</a>
     </div>
 {% endblock %}
