@@ -6,6 +6,8 @@ use App\Entity\Animal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query\AST\Subselect;
+use Doctrine\ORM\Query\Expr\Select;
 use Doctrine\Persistence\ManagerRegistry;
 
 
@@ -48,7 +50,11 @@ class AnimalRepository extends ServiceEntityRepository
     public function findAnimalsFromSearchForm($genderMin, $genderMax, $species, $ageMin, $ageMax, $child_compatibility, $other_animal_compatibility, $garden_needed, $status, $department)
     {
         $query = $this->createQueryBuilder('a');
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> 7328a3e113c44a2bb3fffd0cb9bd07874478ed26
             if ($child_compatibility == 0) {
                 $query->andWhere('a.child_compatibility >= :child_compatibility');
             }
@@ -149,7 +155,7 @@ class AnimalRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT a.id, a.imageName as picture, a.name, a.description
+            'SELECT a.id, a.imageName, a.name, a.description
             FROM App\Entity\Animal a
             '
         )
