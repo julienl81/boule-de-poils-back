@@ -7,7 +7,7 @@
 <div class="container">
     <h1>Liste des animaux</h1>
 
-    <a class="btn btn-info" href="{{ path('app_animal_new') }}">Ajouter</a>
+    <a class="btn btn-info ajouter" href="{{ path('app_animal_new') }}">Ajouter</a>
 
     <table class="table table-hover table-striped">
         <thead>
@@ -22,6 +22,8 @@
                 <th>Besoin d'un jardin ?</th> #}
                 <th>Status</th>
                 <th>Description</th>
+                <th>Association</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -32,18 +34,15 @@
                 <td>{{ animal.name }}</td>
                 <td>{% if animal.gender == '0' %} Femelle{% elseif animal.gender == '1' %} Male{% endif %}</td>
                 <td><img class="img_backoffice_index" src={% if 'http' in animal.imageName %}"{{ animal.imageName }}"{% else %}"{{ asset('images/animaux/')}}{{ animal.imageName }}"{% endif %}></td>
-                {# <td><img class="img_backoffice_index" src={% if '/*https*/' in animal.imageName %}"{{ animal.imageName }}"{% endif %}></td> #}
-                {# <td><img class="img_backoffice_index" src="{{ asset('images/animaux/')}}{{ animal.imageName }}"></td> {% if '/services/' in url %} #}
                 <td>{{ animal.age }}</td>
                 {# <td>{{ animal.childCompatibility ? 'Oui' : 'Non' }}</td>
                 <td>{{ animal.otherAnimalCompatibility ? 'Oui' : 'Non' }}</td>
                 <td>{{ animal.gardenNeeded ? 'Oui' : 'Non' }}</td> #}
                 <td>{% if animal.status == '0' %} Disponible{% elseif animal.status == '1' %} Resa en cours{% elseif animal.status == '2' %} Indisponible{% elseif animal.status == '3' %} Adopté{% endif %}</td>
                 <td>{{ animal.description }}</td>
-                <td>
-                    <a class="btn btn-sm btn-warning" href="{{ path('app_animal_show', {'id': animal.id}) }}">Voir plus</a>
-                    <a class="btn btn-sm btn-success" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a>
-                </td>
+                <td>{{ animal.association.name }}</td>
+                <td><a class="btn btn-sm btn-warning" href="{{ path('app_animal_show', {'id': animal.id}) }}">Afficher</a></td>
+                <td><a class="btn btn-sm btn-success" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a></td>
             </tr>
         {% else %}
             <tr>

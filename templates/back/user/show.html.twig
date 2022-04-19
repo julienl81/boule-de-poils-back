@@ -34,7 +34,7 @@
             </tr>
                   <tr>
                 <th>Association</th>
-                <td>{{ user.association|join(', ')  }}</td>
+                <td>{% if user.association is null %}{% else %} {{ user.association.name }}{% endif %}</td>
             </tr>
         </tbody>
     </table>

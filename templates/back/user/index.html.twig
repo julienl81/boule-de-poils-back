@@ -6,7 +6,7 @@
 <div class="container">
     <h1>Liste des utilisateurs</h1>
     
-    <a class="btn btn-info" href="{{ path('app_back_user_new') }}">Ajouter</a>
+    <a class="btn btn-info ajouter" href="{{ path('app_back_user_new') }}">Ajouter</a>
 
     <table class="table table-hover table-striped">
         <thead>
@@ -31,9 +31,9 @@
                 <td>{{ user.active ? 'Actif' : 'Inactif' }}</td>
                 {# <td>{{ user.roles|join(', ') }}</td> #}
                 <td>{{ user.roles|join(', ') }}</td>
-                <td>{{ user.association|join(', ') }}</td>
+                <td>{% if user.association is null %}{% else %} {{ user.association.name }}{% endif %}</td>
                 <td>
-                    <a class="btn btn-sm btn-warning" href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir plus</a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_back_user_show', {'id': user.id}) }}">Afficher</a>
                     <a class="btn btn-sm btn-success" href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>
                 </td>
             </tr>
