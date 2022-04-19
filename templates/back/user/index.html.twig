@@ -5,14 +5,16 @@
 {% block body %}
 <div class="container">
     <h1>Liste des utilisateurs</h1>
+    
+    <a class="btn btn-info" href="{{ path('app_back_user_new') }}">Ajouter</a>
 
-    <table class="table">
+    <table class="table table-hover table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom d'utilisateur</th>
                 <th>Email</th>
-                <th>Mot de passe</th>
+                {# <th>Mot de passe</th> #}
                 <th>Status</th>
                 <th>Rôle</th>
                 <th>Association</th>
@@ -25,13 +27,13 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.pseudo }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
+                {# <td>{{ user.password }}</td> #}
                 <td>{{ user.active ? 'Actif' : 'Inactif' }}</td>
                 <td>{{ user.roles|join(', ') }}</td>
                 <td>{{ user.association|join(', ') }}</td>
                 <td>
-                    <a href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir plus</a>
-                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir plus</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -42,6 +44,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_user_new') }}">Ajouter</a>
     </div>
 {% endblock %}
