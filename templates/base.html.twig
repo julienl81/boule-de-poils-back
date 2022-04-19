@@ -27,31 +27,38 @@
                 <img class="navbar__logo" src="" alt="" />
                 <h5 class="navbar__title">Boules de poil</h5>
                 <ul class="navbar__links">
+        {% if app.user %}
                     <li class="navbar__item slideInDown-1">
                     <a href="{{ path('app_animal_index') }}" class="navbar__link">
-                        Les animaux
+                        Animaux
                     </a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="navbar__item slideInDown-2 ">
                     <a href="{{ path('app_association_index') }}" class="navbar__link">
-                        Les associations
+                        Associations
                     </a>
                     </li>
                     <li class="navbar__item slideInDown-3">
                     <a href="{{ path('app_species_index') }}" class="navbar__link">
-                        Les espèces
+                        Espèces
                     </a>
                     </li>
                     <li class="navbar__item slideInDown-4">
                     <a href="{{ path('app_back_user_index') }}" class="navbar__link">
-                        Les utilisateurs
+                        Utilisateurs
                     </a>
                     </li>
+                    {% endif %}
                     <li class="navbar__item slideInDown-4">
-                    <a href="{{ path('app_login') }}" class="navbar__link">
-                        Login
+                    <a href="{{ path('app_logout') }}" class="navbar__link">
+                        Déconnexion
                     </a>
                     </li>
                 </ul>
+                {% else %}
+                <a href="{{ path('app_login') }}" class="navbar__link">Connexion</a>
+        
+            {% endif %}
             </nav>
         </header>
         {% endblock %}
