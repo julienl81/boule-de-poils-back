@@ -6,6 +6,8 @@
 <div class="container">
     <h1>Liste des Associations</h1>
 
+    <a class="btn btn-info" href="{{ path('app_animal_new') }}">Ajouter</a>
+
     <table class="table">
         <thead>
             <tr>
@@ -36,8 +38,8 @@
                 <td>{{ association.email }}</td>
                 <td>{{ association.active ? 'Actif' : 'Inactif' }}</td>
                 <td>
-                    <a href="{{ path('app_association_show', {'id': association.id}) }}">Voir plus</a>
-                    <a href="{{ path('app_association_edit', {'id': association.id}) }}">Modifier</a>
+                    <a  class="btn btn-sm btn-warning" href="{{ path('app_association_show', {'id': association.id}) }}">Voir plus</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('app_association_edit', {'id': association.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -48,6 +50,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_association_new') }}">Ajouter</a>
     </div>
 {% endblock %}
