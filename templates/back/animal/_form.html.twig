@@ -1,6 +1,51 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn btn-success mb-3">{{ button_label|default('Sauvegarder') }}</button>
-{{ form_end(form) }}
+{{ form_end(form) }} #}
 
+
+{{ form_start(form) }}
+    <div class="row">
+    {{ form_row(form.name) }}
+    <div class="col-6">
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-4">
+    {{ form_row(form.species) }}
+    </div>
+    <div class="col-4">
+    {{ form_row(form.gender) }}
+    </div>
+    <div class="col-4">
+    {{ form_row(form.age) }}
+    </div>
+    </div>
+    {{ form_row(form.description) }}
+    {{ form_row(form.imageFile) }}
+    
+    <div class="row">
+    <div class="col-4">
+    {{ form_row(form.child_compatibility) }}
+    </div>
+    <div class="col-4">
+    {{ form_row(form.other_animal_compatibility) }}
+    </div>
+    <div class="col-4">
+    {{ form_row(form.garden_needed) }}
+    </div>
+    </div>
+    {{ form_row(form.status) }}
+    <div class="row">
+    <div class="col-6">
+    {{ form_row(form.department) }}
+    </div>
+    <div class="col-6">
+    {{ form_row(form.association) }}
+    </div>
+    </div>
+
+  <button class="btn btn-success mb-3">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}
 

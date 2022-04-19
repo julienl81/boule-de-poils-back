@@ -49,7 +49,6 @@ bin/console doctrine:fixtures:load
 
 C'est maintenant prêt, good luck :)
 
-
 ## Si besoin de supprimer la BDD ##
 
 ```bin/console doctrine:database:drop --force```

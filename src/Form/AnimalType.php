@@ -27,6 +27,9 @@ class AnimalType extends AbstractType
             ])
             ->add('gender', ChoiceType::class, [
                 'label' => 'Genre',
+                'label_attr' => [
+                    'class' => 'radio-inline',
+                ],
                 'choices'  => [
                     'Male' => 1,
                     'Femelle' => 0,
@@ -37,8 +40,8 @@ class AnimalType extends AbstractType
                 'label' => 'Ajouter une photo',
                 'required' => false,
                 'allow_delete' => true,
-                'delete_label' => 'confirme ',
-                'download_label' => '...',
+                'delete_label' => 'Confirmez la nouvelle photo',
+                'download_label' => '',
                 'download_uri' => true,
                 'image_uri' => true,
                 //'imagine_pattern' => 'product_image',
@@ -48,6 +51,9 @@ class AnimalType extends AbstractType
             ])
             ->add('child_compatibility', ChoiceType::class, [
                 'label' => 'Sociable avec les enfants ?',
+                'label_attr' => [
+                    'class' => 'radio-inline',
+                ],
                 'choices'  => [
                     'Oui' => true,
                     'Non' => false,
@@ -56,6 +62,9 @@ class AnimalType extends AbstractType
             ])
             ->add('other_animal_compatibility', ChoiceType::class, [
                 'label' => 'Sociable avec autres animaux ?',
+                'label_attr' => [
+                    'class' => 'radio-inline',
+                ],
                 'choices'  => [
                     'Oui' => true,
                     'Non' => false,
@@ -64,6 +73,9 @@ class AnimalType extends AbstractType
             ])
             ->add('garden_needed', ChoiceType::class, [
                 'label' => 'Besoin d\'un jardin ?',
+                'label_attr' => [
+                    'class' => 'radio-inline',
+                ],
                 'choices'  => [
                     'Oui' => true,
                     'Non' => false,
@@ -76,6 +88,9 @@ class AnimalType extends AbstractType
                     'En cours de réservation' => 1,
                     'Adopté' => 2,
                     'Indisponible' => 3,
+            ],
+            'label_attr' => [
+                'class' => 'radio-inline',
             ],
             'expanded' => true,
         ])
