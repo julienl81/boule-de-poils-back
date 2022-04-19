@@ -45,6 +45,11 @@ bin/console doctrine:fixtures:load
 
 ## Serveur web ##
 
-```php -S localhost:8080 -t public```
+```php -S localhost:8081 -t public```
 
 C'est maintenant prêt, good luck :)
+
+
+## Si besoin de supprimer la BDD ##
+
+```bin/console doctrine:database:drop --force```

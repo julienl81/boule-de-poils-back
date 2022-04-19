@@ -79,9 +79,9 @@
 
 <div>
     
-    <button class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</button>
+    <a class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</a>
 
-    <button class="btn btn-warning" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</button>
+    <a class="btn btn-warning" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
 
     <p>{{ include('back/animal/_delete_form.html.twig') }}</p>
 
