@@ -52,3 +52,6 @@ C'est maintenant prêt, good luck :)
 ## Si besoin de supprimer la BDD ##
 
 ```bin/console doctrine:database:drop --force```
+```bin/console doctrine:database:drop --force  && bin/console doctrine:database:create && bin/console doctrine:migration:migrate && bin/console doctrine:fixtures:load```
+
+

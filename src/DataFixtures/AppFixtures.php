@@ -45,31 +45,75 @@ class AppFixtures extends Fixture
            $manager->persist($species);
         }
 
+        // ! On veut créer une liste des associations
+        $nbAssociation = 3;
+ 
+        // va contenir les objets associations que l'on a créé
+        $associationObjects = [];
+ 
+       for ($associationCount = 0; $associationCount < $nbAssociation; $associationCount++) {
+           $association = new Association();
+           $association->setName($faker->company());
+           $association->setDescription($faker->text(100));
+           $association->setSiren($faker->siren());
+           $association->setStreet($faker->streetAddress());
+           $association->setZipCode($faker->postcode());
+           $association->setCity($faker->city());
+           $association->setPhoneNumber($faker->phoneNumber());
+           $association->setEmail($faker->email());
+           $association->setActive($faker->boolean(80));
+           
+           $manager->persist($association);
+           $associationObjects[] = $association;
+           
+        }
+
         // ! On crée des users
-        $admin = new User();
-        $admin->setPseudo('admin');
-        $admin->setEmail('admin@admin.com');
-        $admin->setRoles(['ROLE_ADMIN']);
-        $admin->setPassword('$2y$13$rI53W6ngwXU7RKhRKcheUu3VeByV8LcY3FKMLeKkXlFlpGUDN0mPu');
-        $admin->setActive(1); // 1 = true
-        $manager->persist($admin);
+        $adminUn = new User();
+        $adminUn->setPseudo('Julien');
+        $adminUn->setEmail('admin@admin.com');
+        $adminUn->setRoles(['ROLE_ADMIN']);
+        $adminUn->setPassword('$2y$13$rI53W6ngwXU7RKhRKcheUu3VeByV8LcY3FKMLeKkXlFlpGUDN0mPu');
+        $adminUn->setActive(1); // 1 = true
+        //$adminUn->setAssociation($faker->randomElement($associationObjects));
+        $manager->persist($adminUn);
+
+        $adminDeux = new User();
+        $adminDeux->setPseudo('Anthony');
+        $adminDeux->setEmail('anthony@admin.com');
+        $adminDeux->setRoles(['ROLE_ADMIN']);
+        $adminDeux->setPassword('$2y$13$rI53W6ngwXU7RKhRKcheUu3VeByV8LcY3FKMLeKkXlFlpGUDN0mPu');
+        //$adminDeux->setAssociation($faker->randomElement($associationObjects));
+        $adminDeux->setActive(1); // 1 = true
+        $manager->persist($adminDeux);
 
         $association = new User();
-        $association->setPseudo('association');
+        $association->setPseudo('Mathilde');
         $association->setEmail('association@association.com');
         $association->setRoles(['ROLE_ASSOCIATION']);
         $association->setPassword('$2y$13$Wwo6UdqNiPtch/xI7Dg9bOGkeaiWwvp/BIYrQH1GLCFqBYpouYTvy');
+        //$association->setAssociation($faker->randomElement($associationObjects));
+
         $association->setActive(1); // 1 = true
         // Attention $manager = le Manager de Doctrine :D
         $manager->persist($association);
 
         $user = new User();
-        $user->setPseudo('user');
-        $user->setEmail('user@user.com');
+        $user->setPseudo('François');
+        $user->setEmail('françois@user.com');
         $user->setRoles(['ROLE_USER']);
         $user->setPassword('$2y$13$s5XZoIFczj/24jOvze/B4.M2FrJw02JmQZ4Z2o559u6B/WZcnuevS');
+        //$user->setAssociation($faker->randomElement($associationObjects));
         $user->setActive(1); // 1 = true
         $manager->persist($user);
+
+        $userDeux = new User();
+        $userDeux->setPseudo('Virgnie');
+        $userDeux->setEmail('user@user.com');
+        $userDeux->setRoles(['ROLE_USER']);
+        $userDeux->setPassword('$2y$13$s5XZoIFczj/24jOvze/B4.M2FrJw02JmQZ4Z2o559u6B/WZcnuevS');
+        $userDeux->setActive(1); // 1 = true
+        $manager->persist($userDeux);
         
 
         // ! On veut créer une liste des départements et les stocker dans un tableau
@@ -193,28 +237,6 @@ class AppFixtures extends Fixture
         }
 
 
-        // ! On veut créer une liste des associations
-        $nbAssociation = 10;
-
-        // va contenir les objets associations que l'on a créé
-        $associationObjects = [];
-
-       for ($associationCount = 0; $associationCount < $nbAssociation; $associationCount++) {
-           $association = new Association();
-           $association->setName($faker->company());
-           $association->setDescription($faker->text(100));
-           $association->setSiren($faker->siren());
-           $association->setStreet($faker->streetAddress());
-           $association->setZipCode($faker->postcode());
-           $association->setCity($faker->city());
-           $association->setPhoneNumber($faker->phoneNumber());
-           $association->setEmail($faker->email());
-           $association->setActive($faker->boolean(80));
-           
-           $manager->persist($association);
-           $associationObjects[] = $association;
-           
-        }
 
 
        // ! On créer une liste d'url d'images personnalisées
@@ -262,7 +284,7 @@ class AppFixtures extends Fixture
 
 
        // ! On veut créer une liste d'animaux
-       $nbAnimal = 5000;
+       $nbAnimal = 50;
 
        for ($animalCount = 0; $animalCount < $nbAnimal; $animalCount++) {
            // ajout de l'animal

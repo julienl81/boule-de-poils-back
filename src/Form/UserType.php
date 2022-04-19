@@ -29,7 +29,6 @@ class UserType extends AbstractType
                 'expanded' => true,
                 ])
             ->add('association', EntityType::class, [
-                'label' => 'Association',
                 'class' => Association::class,
                 'choice_label' => 'name',
             ])

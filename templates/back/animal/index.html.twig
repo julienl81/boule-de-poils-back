@@ -17,9 +17,9 @@
                 <th>Genre</th>
                 <th>Photo</th>
                 <th>Age</th>
-                <th>Sociable avec les enfants ?</th>
+                {# <th>Sociable avec les enfants ?</th>
                 <th>Sociable avec autres animaux ?</th>
-                <th>Besoin d'un jardin ?</th>
+                <th>Besoin d'un jardin ?</th> #}
                 <th>Status</th>
                 <th>Description</th>
                 <th></th>
@@ -35,9 +35,9 @@
                 {# <td><img class="img_backoffice_index" src={% if '/*https*/' in animal.imageName %}"{{ animal.imageName }}"{% endif %}></td> #}
                 {# <td><img class="img_backoffice_index" src="{{ asset('images/animaux/')}}{{ animal.imageName }}"></td> {% if '/services/' in url %} #}
                 <td>{{ animal.age }}</td>
-                <td>{{ animal.childCompatibility ? 'Oui' : 'Non' }}</td>
+                {# <td>{{ animal.childCompatibility ? 'Oui' : 'Non' }}</td>
                 <td>{{ animal.otherAnimalCompatibility ? 'Oui' : 'Non' }}</td>
-                <td>{{ animal.gardenNeeded ? 'Oui' : 'Non' }}</td>
+                <td>{{ animal.gardenNeeded ? 'Oui' : 'Non' }}</td> #}
                 <td>{% if animal.status == '0' %} Disponible{% elseif animal.status == '1' %} Resa en cours{% elseif animal.status == '2' %} Indisponible{% elseif animal.status == '3' %} Adopté{% endif %}</td>
                 <td>{{ animal.description }}</td>
                 <td>
