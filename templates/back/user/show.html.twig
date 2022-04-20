@@ -39,10 +39,10 @@
         </tbody>
     </table>
 
-    <a class="btn btn-secondary" href="{{ path('app_back_user_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('app_back_user_index') }}">Retour à la liste</a>
 
-    <a class="btn btn-warning" href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+    <a class="btn btn-warning" href="{{ path('app_back_user_edit', {'id': user.id}) }}">Mettre à jour</a>
 
-    {{ include('back/user/_delete_form.html.twig') }}
+    <p>{{ include('back/user/_delete_form.html.twig') }}<p/>
     </div>
 {% endblock %}

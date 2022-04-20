@@ -31,14 +31,14 @@ class UserController extends AbstractController
     public function add(ManagerRegistry $doctrine, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher, ValidatorInterface $validator, SerializerInterface $serializer): Response
     {
         // Envoyer un message si quelqu'un tente d'accéder à l'endpoint sans autorisation
-        if (! $this->isGranted("ROLE_ADMIN")) {
-            $data =
-            [
-                'error' => true,
-                'msg' => 'Il faut être admin pour accéder à ce endpoint'
-            ];
-            return $this->json($data, Response::HTTP_FORBIDDEN);
-        }
+        // if (! $this->isGranted("ROLE_ADMIN")) {
+        //     $data =
+        //     [
+        //         'error' => true,
+        //         'msg' => 'Il faut être admin pour accéder à ce endpoint'
+        //     ];
+        //     return $this->json($data, Response::HTTP_FORBIDDEN);
+        // }
 
         // récupérer les données depuis la requete
         $userAsJson = $request->getContent();
