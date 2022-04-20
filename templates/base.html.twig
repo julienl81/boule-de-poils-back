@@ -25,30 +25,32 @@
         <header>
             <nav class='navbar hide-nav'>
                 <img class="navbar__logo" src="" alt="" />
-                <h5 class="navbar__title">Boules de poil</h5>
+                <h5 class="navbar__title">Boule de poils</h5>
                 <ul class="navbar__links">
-        {% if app.user %}
-                    <li class="navbar__item slideInDown-1">
-                    <a href="{{ path('app_animal_index') }}" class="navbar__link">
-                        Animaux
-                    </a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <li class="navbar__item slideInDown-2 ">
-                    <a href="{{ path('app_association_index') }}" class="navbar__link">
-                        Associations
-                    </a>
-                    </li>
-                    <li class="navbar__item slideInDown-3">
-                    <a href="{{ path('app_species_index') }}" class="navbar__link">
-                        Espèces
-                    </a>
-                    </li>
-                    <li class="navbar__item slideInDown-4">
-                    <a href="{{ path('app_back_user_index') }}" class="navbar__link">
-                        Utilisateurs
-                    </a>
-                    </li>
+                    {% if app.user %}
+                        <li class="navbar__item slideInDown-1">
+                        <a href="{{ path('app_animal_index') }}" class="navbar__link">
+                            Animaux
+                        </a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="navbar__item slideInDown-2 ">
+                        <a href="{{ path('app_association_index') }}" class="navbar__link">
+                            Associations
+                        </a>
+                        </li>
+                        <li class="navbar__item slideInDown-3">
+                        <a href="{{ path('app_species_index') }}" class="navbar__link">
+                            Espèces
+                        </a>
+                        </li>
+                        <li class="navbar__item slideInDown-4">
+                        <a href="{{ path('app_back_user_index') }}" class="navbar__link">
+                            Utilisateurs
+                        </a>
+                        </li>
                     {% endif %}
+                </ul>
+                <ul class="navbar__links_logout">
                     <li class="navbar__item slideInDown-4">
                     <a href="{{ path('app_logout') }}" class="navbar__link">
                         Déconnexion
