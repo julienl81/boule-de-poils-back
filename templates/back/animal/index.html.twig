@@ -13,9 +13,10 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
-                <th>Genre</th>
                 <th>Photo</th>
+                <th>Nom</th>
+                <th>Espèce</th>
+                {# <th>Genre</th> #}
                 <th>Age</th>
                 {# <th>Sociable avec les enfants ?</th>
                 <th>Sociable avec autres animaux ?</th>
@@ -31,9 +32,10 @@
         {% for animal in animals %}
             <tr>
                 <td>{{ animal.id }}</td>
-                <td>{{ animal.name }}</td>
-                <td>{% if animal.gender == '0' %} Femelle{% elseif animal.gender == '1' %} Male{% endif %}</td>
                 <td><img class="img_backoffice_index" src={% if 'http' in animal.imageName %}"{{ animal.imageName }}"{% else %}"{{ asset('images/animaux/')}}{{ animal.imageName }}"{% endif %}></td>
+                <td>{{ animal.name }}</td>
+                <td>{{ animal.species.name }}</td>
+                {# <td>{% if animal.gender == '0' %} Femelle{% elseif animal.gender == '1' %} Male{% endif %}</td> #}
                 <td>{{ animal.age }}</td>
                 {# <td>{{ animal.childCompatibility ? 'Oui' : 'Non' }}</td>
                 <td>{{ animal.otherAnimalCompatibility ? 'Oui' : 'Non' }}</td>

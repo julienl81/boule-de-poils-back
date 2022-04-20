@@ -41,9 +41,9 @@ class AnimalType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'delete_label' => 'Confirmez la nouvelle photo',
-                'download_label' => '',
-                'download_uri' => true,
-                'image_uri' => true,
+                //'download_label' => '...',
+                'download_uri' => false,
+                'image_uri' => false,
                 //'imagine_pattern' => 'product_image',
             ])
             ->add('age', null, [
