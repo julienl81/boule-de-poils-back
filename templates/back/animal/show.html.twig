@@ -4,18 +4,18 @@
 
 {% block body %}
 <div class="container">
-<div class="d-flex p-2 bd-highlight">
+<div class="d-flex p-2 bd-highlight" style="margin-bottom: 2rem">
 
     <div class="picture">
     <h1>Fiche de {{animal.name}}</h1>
 
-        <img class="img_backoffice_show" src={% if 'http' in animal.imageName %}"{{ animal.imageName }}"{% else %}"{{ asset('images/animaux/')}}{{ animal.imageName }}"{% endif %}>
+        <img class="img_backoffice_show" style="margin: 2rem 2rem 2rem 0" src={% if 'http' in animal.imageName %}"{{ animal.imageName }}"{% else %}"{{ asset('images/animaux/')}}{{ animal.imageName }}"{% endif %}>
          
         <h3>Description</h3>
-        <span>{{ animal.description }}</span>
+        <span style="padding-right: 5rem">{{ animal.description }}</span>
     </div>
 
-    <table class="table">
+    <table class="table" style="margin-top: 4.5rem">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -78,7 +78,7 @@
         
         <a class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</a>
 
-        <a class="btn btn-warning" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
+        <a class="btn btn-warning" style="margin-left: 0.8rem" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
 
         <p>{{ include('back/animal/_delete_form.html.twig') }}</p>
 

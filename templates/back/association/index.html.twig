@@ -39,8 +39,7 @@
                 <td>{{ association.email }}</td>
                 <td>{{ association.active ? 'Actif' : 'Inactif' }}</td>
                 <td><a  class="btn btn-sm btn-warning" href="{{ path('app_association_show', {'id': association.id}) }}">Afficher</a></td>
-                <td><a class="btn btn-sm btn-success" href="{{ path('app_association_edit', {'id': association.id}) }}">Modifier</a>
-                </td>
+                <td><a class="btn btn-sm btn-success" href="{{ path('app_association_edit', {'id': association.id}) }}">Modifier</a></td>
             </tr>
         {% else %}
             <tr>
