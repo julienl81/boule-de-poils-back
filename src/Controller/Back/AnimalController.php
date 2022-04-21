@@ -3,6 +3,8 @@
 namespace App\Controller\Back;
 
 use App\Entity\Animal;
+use App\Entity\Association;
+use App\Entity\User;
 use App\Form\AnimalType;
 use App\Repository\AnimalRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/animal")
@@ -20,12 +23,21 @@ class AnimalController extends AbstractController
     /**
      * @Route("/", name="app_animal_index", methods={"GET"})
      */
-    public function index(AnimalRepository $animalRepository): Response
+    public function index(AnimalRepository $animalRepository, UserInterface $user): Response
     {
-        // if (isGranted('ROLE_ASSOCIATION'))
+        /** @var User */
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            // $test = $user->get->association;
+            // dd($test);
+            return $this->render('back/animal/index.html.twig', [
+            'animals' => $animalRepository->findByAssociation($user->getAssociation())
+        ]);
+        }
+
         return $this->render('back/animal/index.html.twig', [
             'animals' => $animalRepository->findAll(),
         ]);
+    
     }
 
     /**
@@ -39,7 +51,9 @@ class AnimalController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $animalRepository->add($animal);
-            return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_animal_show', ['id' => $animal->getId()], Response::HTTP_SEE_OTHER);
+            //return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('back/animal/new.html.twig', [

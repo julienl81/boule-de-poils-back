@@ -11,7 +11,7 @@
 
 {% if app.user %}
         <div class="mb-3">
-            <p>Bonjour {{ app.user.pseudo }}, vous êtes bien connecté :)</p>
+            <p>Bonjour {{ app.user.pseudo }} {% if not is_granted('ROLE_ADMIN') %}({{ app.user.association.name }}){% endif %}, vous êtes bien connecté :)</p>
         </div> 
     {% else %}
 

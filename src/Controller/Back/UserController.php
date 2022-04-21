@@ -5,11 +5,13 @@ namespace App\Controller\Back;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @Route("/user")
@@ -30,15 +32,30 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_back_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, UserRepository $userRepository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user);
-            return $this->redirectToRoute('app_back_user_index', [], Response::HTTP_SEE_OTHER);
+
+            // Pour hacher le mot de passe :
+            // - on a récupéré le service adéquat (injection dans la méthode du contrôleur)
+            // - on lui donne sur la méthode hashPassword, notre $user
+            // - et le mot de passe en clair (qui est déjà dnas le user !)
+            $hashedPassword = $userPasswordHasher->hashPassword($user, $user->getPassword());
+            // On écrase le mot de passe en clair par le mot de passe haché
+            $user->setPassword($hashedPassword);
+
+            // dd($user);
+            
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Utilisateur ajouté(e).');
+
+            return $this->redirectToRoute('app_back_user_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('back/user/new.html.twig', [
