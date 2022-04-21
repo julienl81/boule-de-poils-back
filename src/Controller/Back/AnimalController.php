@@ -22,6 +22,7 @@ class AnimalController extends AbstractController
      */
     public function index(AnimalRepository $animalRepository): Response
     {
+        // if (isGranted('ROLE_ASSOCIATION'))
         return $this->render('back/animal/index.html.twig', [
             'animals' => $animalRepository->findAll(),
         ]);
