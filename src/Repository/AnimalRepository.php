@@ -100,6 +100,16 @@ class AnimalRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function findByAssociation($associationId) 
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.association = :associationId')
+            ->setParameter('associationId', $associationId)
+            ->orderBy('a.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Animal[] Returns an array of Animal objects
     //  */
