@@ -7,7 +7,7 @@
 
     <h1>Index des espèces</h1>
 
-    <a class="btn btn-info ajouter" href="{{ path('app_species_new') }}">Ajouter</a>
+    <a class="btn btn-info ajouter" href="{{ path('app_species_new') }}"><i class="bi bi-plus-circle"></i> Ajouter</a>
 
 
     <table class="table table-hover table-striped">
@@ -23,9 +23,9 @@
             <tr>
                 <td>{{ species.id }}</td>
                 <td>{{ species.name }}</td>
-                <td>
-                    <a class="btn btn-sm btn-warning" href="{{ path('app_species_show', {'id': species.id}) }}">Afficher</a>
-                    <a class="btn btn-sm btn-success" href="{{ path('app_species_edit', {'id': species.id}) }}">Modifier</a>
+                <td align="right">
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_species_show', {'id': species.id}) }}"><i class="bi bi-zoom-in"></i></a>
+                    <a class="btn btn-sm btn-success" href="{{ path('app_species_edit', {'id': species.id}) }}"><i class="bi bi-pencil"></i></a>
                 </td>
             </tr>
         {% else %}
