@@ -6,7 +6,7 @@
 <div class="container">
     <h1>Liste des Associations</h1>
 
-    <a class="btn btn-info ajouter" href="{{ path('app_association_new') }}">Ajouter</a>
+    <a class="btn btn-info ajouter" href="{{ path('app_association_new') }}"><i class="bi bi-plus-circle"></i> Ajouter</a>
 
     <table class="table table-hover table-striped">
         <thead>
@@ -38,8 +38,8 @@
                 <td>{{ association.phoneNumber }}</td>
                 <td>{{ association.email }}</td>
                 <td>{{ association.active ? 'Actif' : 'Inactif' }}</td>
-                <td><a  class="btn btn-sm btn-warning" href="{{ path('app_association_show', {'id': association.id}) }}">Afficher</a></td>
-                <td><a class="btn btn-sm btn-success" href="{{ path('app_association_edit', {'id': association.id}) }}">Modifier</a></td>
+                <td><a  class="btn btn-sm btn-warning" href="{{ path('app_association_show', {'id': association.id}) }}"><i class="bi bi-zoom-in"></i></a></td>
+                <td><a class="btn btn-sm btn-success" href="{{ path('app_association_edit', {'id': association.id}) }}"><i class="bi bi-pencil"></i></a></td>
             </tr>
         {% else %}
             <tr>
