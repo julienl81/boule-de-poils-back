@@ -15,7 +15,7 @@
 }
 
 .container {
-    padding-top: 90px;
+    padding-top: 110px;
 }
 
 /* Section Navbar */
@@ -26,7 +26,7 @@
     display:flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding:1rem;
     width: 100vw;
     min-height: 75px;
@@ -35,6 +35,12 @@
     box-shadow: 0px 1px 10px #999;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  border-bottom-left-radius: 5px;
+  }
+
+  .navbar ul {
+    margin-top: 0;
+    margin-bottom: 0;
   }
   .logo__link {
     height: 50px;
@@ -49,7 +55,7 @@
   .navbar__logo {
     height: 50px;
   }
-  .navbar__links { 
+  .navbar__links { width: 80%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -58,8 +64,8 @@
   .navbar__link {
     text-decoration: none;
     color: #FFF;
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
+    font-family: 'Arima Madurai', 'Roboto';
+    font-size: 1.2em;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
   }
@@ -197,3 +203,95 @@
   body {
     background-color:rgb(241, 239, 239);
   }
+
+/* Buttons custom colors */
+
+.btn-primary {
+  color: #000;
+  background-color: #F2B33D;
+  border-color: #F2B33D;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-primary:hover {
+  background-color: #D97C0B;
+  border-color: #D97C0B;
+}
+
+.btn-primary:visited {
+  background-color: #D97C0B;
+  border-color: #D97C0B;
+}
+
+.btn-secondary {
+  color: #000;
+  background-color: #8C7488;
+  border-color: #8C7488;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-secondary:hover {
+  background-color: #735F6E;
+  border-color: #735F6E;
+}
+
+.btn-secondary:visited {
+  background-color: #735F6E;
+  border-color: #735F6E;
+}
+
+.btn-info {
+  color: white;
+  background-color: #8C7488;
+  border-color: #8C7488;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-info:hover {
+  background-color: #F2B33D;
+  border-color: #F2B33D;
+}
+
+.btn-info:visited {
+  background-color: #F2B33D;
+  border-color: #F2B33D;
+}
+
+.btn-success {
+  color: white;
+  background-color: #D97C0B;
+  border-color: #D97C0B;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-success:hover {
+  color: white;
+  background-color: #F2B33D;
+  border-color: #F2B33D;
+}
+
+.btn-success:visited {
+  color: white;
+  background-color: #F2B33D;
+  border-color: #F2B33D;
+}
+
+
+.btn-warning {
+    color: black;
+    background-color: #e7a52b;
+    border-color: #e7a52b;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.btn-warning:hover {
+  color: white;
+}
+
+.btn-danger {
+  color: #000;
+  background-color: rgb(180, 19, 19);
+  border-color: rgb(180, 19, 19);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+

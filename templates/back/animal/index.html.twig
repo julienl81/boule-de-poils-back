@@ -7,7 +7,7 @@
 <div class="container">
     <h1>Liste des animaux</h1>
 
-    <a class="btn btn-info ajouter" href="{{ path('app_animal_new') }}">Ajouter</a>
+    <a class="btn btn-info ajouter" href="{{ path('app_animal_new') }}"><i class="bi bi-plus-circle"></i> Ajouter</a>
 
     <table class="table table-hover table-striped">
         <thead>
@@ -43,8 +43,8 @@
                 <td>{% if animal.status == '0' %} Disponible{% elseif animal.status == '1' %} Resa en cours{% elseif animal.status == '2' %} Indisponible{% elseif animal.status == '3' %} Adopté{% endif %}</td>
                 <td>{{ animal.description }}</td>
                 <td>{{ animal.association.name }}</td>
-                <td><a class="btn btn-sm btn-warning" href="{{ path('app_animal_show', {'id': animal.id}) }}">Afficher</a></td>
-                <td><a class="btn btn-sm btn-success" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Modifier</a></td>
+                <td><a class="btn btn-sm btn-warning" href="{{ path('app_animal_show', {'id': animal.id}) }}"><i class="bi bi-zoom-in"></i></a></td>
+                <td><a class="btn btn-sm btn-success" href="{{ path('app_animal_edit', {'id': animal.id}) }}"><i class="bi bi-pencil"></i></a></td>
             </tr>
         {% else %}
             <tr>
