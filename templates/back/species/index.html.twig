@@ -7,9 +7,6 @@
 
     <h1>Index des espèces</h1>
 
-    <a class="btn btn-info ajouter" href="{{ path('app_species_new') }}"><i class="bi bi-plus-circle"></i> Ajouter</a>
-
-
     <table class="table table-hover table-striped">
         <thead>
             <tr>
@@ -33,8 +30,11 @@
                 <td colspan="3">Aucun résultat</td>
             </tr>
         {% endfor %}
+        
         </tbody>
     </table>
+        <a class="btn btn-info " href="{{ path('app_species_new') }}"><i class="bi bi-plus-circle"></i> Ajouter</a>
+
 
     </div>
 {% endblock %}

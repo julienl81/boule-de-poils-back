@@ -4,12 +4,11 @@
 
 {% block body %}
 <div class="container w-50 mx-auto">
-    <h1>Editer une espèce</h1>
+    <h1>Editer une espèce    
+    <a class="btn btn-return float-end" href="{{ path('app_species_index') }}">Retour à la liste</a>
+    </h1>
 
     {{ include('back/species/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
-    <a class="btn btn-primary float-end" href="{{ path('app_species_index') }}">Retour à la liste</a>
-
     {{ include('back/species/_delete_form.html.twig') }}
 </div>
 {% endblock %}

@@ -74,14 +74,10 @@
     </table>
     </div>
 
-    <div>
-        
-        <a class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</a>
-
-        <a class="btn btn-warning" style="margin-left: 0.8rem" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
-
+    <div class="show_buttons">
+        <a class="btn btn-warning_show" style="margin-left: 0.8rem" href="{{ path('app_animal_edit', {'id': animal.id}) }}">Mettre à jour</a>
         <p>{{ include('back/animal/_delete_form.html.twig') }}</p>
-
+        <a class="btn btn-secondary" href="{{ path('app_animal_index') }}">Retour à la liste</a>
     </div>
 
 </div>

@@ -3,13 +3,15 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
+
 <div class="container w-50 mx-auto">
-    <h1>Modifier le compte de {{ user.pseudo }}</h1>
+    <h1>Modifier le compte de {{ user.pseudo }}    
+    <a class="btn btn-return float-end" href="{{ path('app_back_user_index') }}">Retour à la liste</a>
+    </h1>
+
 
     {{ include('back/user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
-    <a class="btn btn-primary float-end" href="{{ path('app_back_user_index') }}">Retour à la liste</a>
-
     {{ include('back/user/_delete_form.html.twig') }}
-    </div>
+
+</div>
 {% endblock %}

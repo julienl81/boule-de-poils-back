@@ -7,20 +7,15 @@
 <div class="container w-25 mx-auto">
 <p></p>
 
-<h1 class="h3 mb-3 font-weight-normal"> Console d'administration </h1>
+<h1 class="h3 mb-3 font-weight-normal">Bienvenue sur votre console d'administration!</h1>
 
 {% if app.user %}
         <div class="mb-3">
-            <p>Bonjour {{ app.user.pseudo }}, vous êtes bien connecté :)</p>
+            <p class="signin">Bonjour {{ app.user.pseudo }}, vous êtes bien connecté :)</p>
         </div> 
     {% else %}
-
-
-<p> Bienvenue sur votre console d'administration, veuillez entrer vos identifiants de connexion ci-dessous</p>
-
-
-
-
+    
+    <p class="signin">Veuillez entrer vos identifiants de connexion ci-dessous.</p>
 
 <form method="post">
     {% if error %}
@@ -47,7 +42,7 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit" style="margin-top:1em">
+    <button class="btn btn-lg btn-primary" type="submit" style="margin-top:2em">
         Envoyer
     </button>
 </form>
