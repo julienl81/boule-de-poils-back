@@ -54,6 +54,12 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
+    // configuration de la mise en prod, à cause de Apache ?
+    public function supports(Request $request): bool
+    {
+        return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getRequestUri();
+    }
+
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
