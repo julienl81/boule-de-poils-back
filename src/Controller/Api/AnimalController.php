@@ -29,7 +29,7 @@ class AnimalController extends AbstractController
         $jsonContent = $request->getContent();
     
         $parsed_json = json_decode($jsonContent);
-        dump($parsed_json);
+        //dump($parsed_json);
 
         $gender = $parsed_json->gender;   
         if ($gender === 0) {
