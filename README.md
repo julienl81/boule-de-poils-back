@@ -57,3 +57,4 @@ C'est maintenant prêt, good luck :)
 
 ```bin/console doctrine:database:drop --force  && bin/console doctrine:database:create && bin/console doctrine:migration:migrate```
 
+# boule-de-poils
