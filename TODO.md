@@ -6,7 +6,7 @@
 - Revoir le SEO
 - Recherche par km sur carte
 - Commentaire sur l’animal
-- Prise de contact entre utilisateur et association depuis l’application. 
+- Prise de contact entre utilisateur et association depuis l’application.
 - Possibilité de créer une alerte si un animal répondant aux critères arrive dans un refuge/association et avoir ces critères enregistrés dans le profil utilisateur.
 - Possibilité de gérer plusieurs refuges (si un refuge en possède plusieurs)
 - Signaler un contenu inapproprié
