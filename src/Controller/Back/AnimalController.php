@@ -25,6 +25,7 @@ class AnimalController extends AbstractController
      */
     public function index(AnimalRepository $animalRepository, UserInterface $user): Response
     {
+        // todo - comprendre le "getAssociation" fonctionnel mais souligné
         /** @var User */
         if (!$this->isGranted('ROLE_ADMIN')) {
             // $test = $user->get->association;
