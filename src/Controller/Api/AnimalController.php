@@ -117,4 +117,41 @@ class AnimalController extends AbstractController
 
         return $this->json($results, Response::HTTP_OK);
     }
+
+    /**
+     * Function for adding animals in favorites
+     * @route("/api/animal/addFavorites", name="app_api_animal_addFavorites", methods={"POST"})
+     *
+     * @return Response
+     */
+    public function addFavorites(Request $request) :Response
+    {
+          
+        // Recevoir le json avec le user, le décoder et le mettre en variable.
+        $jsonContent = $request->getContent();
+        $parsed_json = json_decode($jsonContent);
+        $userConnected = $parsed_json->username;
+
+        if (!$userConnected) {
+            echo "pas de user connecté";
+        }
+
+        //$currentAnimal = $parsed_json->animal;
+        //dump($parsed_json);
+
+        // mettre les données reçu de l'api en tableau ? edit : à voir selon à renvoyer au final.
+
+        // vérifier si le user est connecté quand il clique sur le bouton d'ajout favori
+
+        // si pas connecté => flash message "vous devez être connecté". (session pour les non connectés ?)
+
+        // si connecté => 
+            // Récupérer le user connecté
+            // récupérer l'animal (son id)
+            // Ajout BDD
+        
+        // Rester sur la même page et changer icone de favori
+        return $this->json($userConnected);
+
+    }
 }
