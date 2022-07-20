@@ -7,6 +7,7 @@ use App\Entity\FavoriteAnimalUser;
 use App\Form\AnimalType;
 use App\Repository\AnimalRepository;
 use App\Repository\FavoriteAnimalUserRepository;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -122,46 +123,32 @@ class AnimalController extends AbstractController
 
     /**
      * Function for adding animals in favorites
-     * @route("/api/animal/addFavorites", name="app_api_animal_addFavorites", methods={"POST"})
+     * @route("/api/animal/addFavorites/{id}", name="app_api_animal_addFavorites", methods={"POST"})
      *
      * @return Response
      */
-    public function addFavorites(Request $request, ManagerRegistry $doctrine, SerializerInterface $serializer, FavoriteAnimalUserRepository $favoriteAnimalUserRepository) :Response
+    public function addFavorites(Request $request, ManagerRegistry $doctrine, SerializerInterface $serializer, Animal $animal, UserRepository $userRepository) :Response
     {
         // vérifier si le user est connecté quand il clique sur le bouton d'ajout favori
         
         // Recevoir le json avec le user, le décoder et le mettre en variable.
         $jsonContent = $request->getContent();
-        //dd($jsonContent);
-
         $parsed_json = json_decode($jsonContent);
         $userConnected = $parsed_json->user_id;
-        //$currentAnimal = $parsed_json->animal;
-        //dump($parsed_json);
         
-        if (!$userConnected) {
-            // si pas connecté => flash message "vous devez être connecté". (session pour les non connectés ?)
-            // ! ajout flash message
-            echo "pas de user connecté";
-        }
-        // mettre les données reçu de l'api en tableau ? edit : à voir selon à renvoyer au final.
-        
-
-            
-            
-        // si connecté =>
-
-            // Récupérer le user connecté
-            // récupérer l'animal (son id)
-            // Ajout BDD
-        /** @var FavoriteAnimalUser $favoriteAnimalUser */
-        $favoriteAnimalUser = $serializer->deserialize($jsonContent, FavoriteAnimalUser::class, JsonEncoder::FORMAT);
+        // Trouver le user correspondant à l'id reçu dans le json
+        $user = $userRepository->find($userConnected);
+       
+        // Ajouter BDD l'animal dans les favoris du user
+        $animal->addFavori($user);
         $entityManager = $doctrine->getManager();
-        $entityManager->persist($favoriteAnimalUser);
+        $entityManager->persist($animal);
         $entityManager->flush();
         
-        // Rester sur la même page et changer icone de favori
+        // todo Rester sur la même page et changer icone de favori
         return $this->json($userConnected);
 
     }
+
+    
 }
