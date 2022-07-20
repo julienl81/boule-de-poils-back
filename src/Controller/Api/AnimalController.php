@@ -150,5 +150,32 @@ class AnimalController extends AbstractController
 
     }
 
-    
+     /**
+     * Function for remove animals from favorites
+     * @route("/api/animal/removeFavorites/{id}", name="app_api_animal_removeFavorites", methods={"POST"})
+     *
+     * @return Response
+     */
+    public function removeFavorites(Request $request, ManagerRegistry $doctrine, SerializerInterface $serializer, Animal $animal, UserRepository $userRepository) :Response
+    {
+        // vérifier si le user est connecté quand il clique sur le bouton d'ajout favori
+        
+        // Recevoir le json avec le user, le décoder et le mettre en variable.
+        $jsonContent = $request->getContent();
+        $parsed_json = json_decode($jsonContent);
+        $userConnected = $parsed_json->user_id;
+        
+        // Trouver le user correspondant à l'id reçu dans le json
+        $user = $userRepository->find($userConnected);
+       
+        // Ajouter BDD l'animal dans les favoris du user
+        $animal->removeFavori($user);
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($animal);
+        $entityManager->flush();
+        
+        // todo Rester sur la même page et changer icone de favori
+        return $this->json($userConnected);
+
+    }
 }
