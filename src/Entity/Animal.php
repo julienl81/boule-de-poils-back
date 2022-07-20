@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -104,6 +106,17 @@ class Animal
      * @Groups("api_animals_list")
      */
     private $association;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="favoris")
+     */
+    private $favoris;
+
+    public function __construct()
+    {
+        $this->favoris = new ArrayCollection();
+    }
+
 
      /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -285,6 +298,30 @@ class Animal
     public function setAssociation(?Association $association): self
     {
         $this->association = $association;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(User $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(User $favori): self
+    {
+        $this->favoris->removeElement($favori);
 
         return $this;
     }
