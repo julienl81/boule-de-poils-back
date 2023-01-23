@@ -7,9 +7,23 @@ use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {
-    public function testDefault()
+
+    public function testcomputeTVAFoodProduct()
     {
-        $product = new Product('Pomme', 'food', 1);
-                                 $this->assertSame(0.055, $product->computeTVA());
+        $product = new Product('Un produit', Product::FOOD_PRODUCT, 20);
+        $this->assertSame(1.1, $product->computeTVA());
+    }
+
+    public function testcomputeTVAFoodProductNotFood()
+    {
+        $product = new Product('iPhone', 'Electronique', 500);
+        $this->assertSame(98.0, $product->computeTVA());
+    }
+
+    public function testNegativePriceComputeTVA()
+    {
+        $product = new Product('Un produit', Product::FOOD_PRODUCT, -20);
+        $this->expectException('Exception');
+        $product->computeTVA();
     }
 }
